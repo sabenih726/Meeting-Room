@@ -9,6 +9,7 @@ st.markdown("""
 - **Volume:** Menyesuaikan volume suara
 - **Mikrofon:** Mute/unmute suara
 """)
+st.image("assets/kandao_remote_buttons.png", caption="Fungsi Remote")
 
 st.subheader("🔹 Fitur Unggulan Kamera Kandao Meeting Pro")
 st.markdown("""
@@ -16,3 +17,4 @@ st.markdown("""
 - **Video Berkualitas Tinggi:** Gambar tajam dan detail untuk semua peserta rapat.
 - **Kemudahan Penggunaan:** Instalasi cepat tanpa konfigurasi rumit.
 """)
+st.image("assets/kandao_features_summary.png", caption="Fitur Unggulan Kamera Kandao Meeting Pro")
