@@ -17,7 +17,7 @@ page = st.radio("📖 Pilih Halaman:",
 if page == "Beranda":
     col1, col2 = st.columns([1, 8])
     with col1:
-        st.image(load_image("assets/logo_trakindo.png"), width=100)
+        st.image(load_image("assets/logo_trakindo.png"), width=400)
     with col2:
         st.title("📽️ Panduan Proyektor dan Kamera Kandao")
 
