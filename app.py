@@ -19,7 +19,7 @@ if page == "Beranda":
     with col1:
         st.image(load_image("assets/logo_trakindo.png"), width=400)
     with col2:
-        st.title("📽️ Panduan Proyektor dan Kamera Kandao")
+        st.title(" ("assets/logo_trakindo.png") Panduan Proyektor dan Kamera Kandao")
 
     st.write("Selamat datang di panduan interaktif ini. Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.")
     st.markdown("Silakan pilih panduan dari menu di atas.")
