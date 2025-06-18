@@ -15,6 +15,6 @@ st.image("assets/colokan_hdmi.png", caption="Contoh port HDMI")
 st.write("2. Pilih input HDMI/VGA di layar proyektor.")
 st.image("assets/home_screen_hdmi.png", caption="Shortcut port HDMI")
 st.write("3. Jika berhasil, tampilan laptop akan muncul di layar.")
-st.image("assets/Picture11", caption="Shortcut HDMI")
+st.image("assets/Picture11.png", caption="Shortcut HDMI")
 
 st.markdown("> 🔌 **Pastikan untuk mematikan proyektor setelah digunakan.**")
