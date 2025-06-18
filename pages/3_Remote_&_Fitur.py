@@ -17,4 +17,4 @@ st.markdown("""
 - **Video Berkualitas Tinggi:** Gambar tajam dan detail untuk semua peserta rapat.
 - **Kemudahan Penggunaan:** Instalasi cepat tanpa konfigurasi rumit.
 """)
-st.image("assets/kandao_features_summary.png", caption="Fitur Unggulan Kamera Kandao Meeting Pro")
+st.image("assets/kandao_features_summary.png.png", caption="Fitur Unggulan Kamera Kandao Meeting Pro")
