@@ -2,27 +2,38 @@ import streamlit as st
 
 st.set_page_config(page_title="Panduan Proyektor & Kamera Kandao", layout="wide")
 
-# Sidebar navigasi
-st.sidebar.title("Menu Panduan")
-menu = st.sidebar.radio("Pilih Halaman:", [
-    "Beranda",
-    "Panduan Proyektor",
-    "Panduan Kamera",
-    "Remote & Fitur",
-    "FAQ & Troubleshooting"
-])
+# Simpan halaman yang dipilih di session_state supaya state-nya tetap walau refresh
+if "page" not in st.session_state:
+    st.session_state.page = "Beranda"
 
-# Halaman Beranda
-if menu == "Beranda":
+def set_page(page_name):
+    st.session_state.page = page_name
+
+# Halaman utama: tombol menu di tengah halaman
+if st.session_state.page == "Beranda":
     st.title("📽️ Panduan Proyektor dan Kamera Kandao")
-    st.write("""
-    Selamat datang di panduan interaktif ini. Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor 
-    dan menggunakan kamera Kandao Meeting Pro dengan mudah.
-    """)
-    st.markdown("Silakan pilih panduan dari menu sebelah kiri.")
+    st.write("Selamat datang di panduan interaktif ini. Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.")
+    st.markdown("Pilih panduan di bawah ini:")
 
-# Halaman Panduan Proyektor (dari 1_Panduan_Proyektor.py)
-elif menu == "Panduan Proyektor":
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1:
+        if st.button("Beranda"):
+            set_page("Beranda")
+    with col2:
+        if st.button("Panduan Proyektor"):
+            set_page("Panduan Proyektor")
+    with col3:
+        if st.button("Panduan Kamera"):
+            set_page("Panduan Kamera")
+    with col4:
+        if st.button("Remote & Fitur"):
+            set_page("Remote & Fitur")
+    with col5:
+        if st.button("FAQ & Troubleshooting"):
+            set_page("FAQ & Troubleshooting")
+
+# Halaman Panduan Proyektor
+elif st.session_state.page == "Panduan Proyektor":
     st.title("📺 Panduan Menyambungkan Proyektor")
 
     st.markdown("#### A. Menggunakan Shortcut Keyboard")
@@ -44,8 +55,11 @@ elif menu == "Panduan Proyektor":
     st.markdown("> 🔌 **Pastikan untuk mematikan proyektor setelah digunakan.**")
     st.image("assets/Picture12.png", caption="Shortcut Remote OFF")
 
-# Halaman Panduan Kamera (dari 2_Panduan_Kamera.py)
-elif menu == "Panduan Kamera":
+    if st.button("Kembali ke Menu"):
+        set_page("Beranda")
+
+# Halaman Panduan Kamera
+elif st.session_state.page == "Panduan Kamera":
     st.title("📷 Panduan Penggunaan Kamera Kandao")
 
     st.subheader("🔹 A. Koneksi ke Laptop")
@@ -67,8 +81,11 @@ elif menu == "Panduan Kamera":
     """)
     st.image("assets/Picture13.png", caption="Kandao Connect Proyektor")
 
-# Halaman Remote & Fitur (dari 3_Remote_&_Fitur.py)
-elif menu == "Remote & Fitur":
+    if st.button("Kembali ke Menu"):
+        set_page("Beranda")
+
+# Halaman Remote & Fitur
+elif st.session_state.page == "Remote & Fitur":
     st.title("🎛️ Remote Control & Fitur Kamera Kandao")
 
     st.subheader("🔹 Fungsi Remote")
@@ -88,8 +105,11 @@ elif menu == "Remote & Fitur":
     """)
     st.image("assets/kandao_features_summary.png.png", caption="Fitur Unggulan Kamera Kandao Meeting Pro")
 
-# Halaman FAQ & Troubleshooting (dari 4_FAQ_Troubleshooting.py)
-elif menu == "FAQ & Troubleshooting":
+    if st.button("Kembali ke Menu"):
+        set_page("Beranda")
+
+# Halaman FAQ & Troubleshooting
+elif st.session_state.page == "FAQ & Troubleshooting":
     st.title("❓ FAQ & Troubleshooting")
 
     st.subheader("🔹 Proyektor tidak terdeteksi?")
@@ -111,3 +131,5 @@ elif menu == "FAQ & Troubleshooting":
     - Hubungi tim **Facility** atau **IT Support** melalui grup internal atau nomor yang disediakan.
     """)
 
+    if st.button("Kembali ke Menu"):
+        set_page("Beranda")
