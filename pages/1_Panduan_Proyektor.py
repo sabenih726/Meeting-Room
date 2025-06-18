@@ -18,3 +18,4 @@ st.write("3. Jika berhasil, tampilan laptop akan muncul di layar.")
 st.image("assets/Picture11.png", caption="Shortcut HDMI")
 
 st.markdown("> 🔌 **Pastikan untuk mematikan proyektor setelah digunakan.**")
+st.image("assets/Picture12.png", caption="Shortcut Remote OFF")
