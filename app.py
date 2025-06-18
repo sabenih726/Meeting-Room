@@ -17,9 +17,6 @@ if st.session_state.page == "Beranda":
 
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        if st.button("Beranda"):
-            set_page("Beranda")
-    with col2:
         if st.button("Panduan Proyektor"):
             set_page("Panduan Proyektor")
     with col3:
