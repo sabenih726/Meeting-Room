@@ -7,4 +7,4 @@ st.write("""
 Selamat datang di panduan interaktif ini. Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.
 """)
 
-st.markdown("### Silakan pilih panduan dari menu di sebelah kiri.")
+st.markdown("### Silakan pilih panduan dari tombol ">" ")
