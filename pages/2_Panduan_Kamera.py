@@ -10,6 +10,7 @@ st.markdown("""
 4. Pada pengaturan kamera dan mikrofon, pilih **Kandao Meeting Pro**.
 5. Pastikan **lampu biru** menyala untuk menandakan koneksi berhasil.
 """)
+st.image("assets/kandao_power_button.png", caption="Kandao On Meeting")
 
 st.subheader("🔹 B. Koneksi ke Proyektor")
 st.markdown("""
@@ -18,3 +19,4 @@ st.markdown("""
 3. Hubungkan ke jaringan Wi-Fi **TU MOBILE**.
 4. Periksa lampu biru menyala sebagai indikator sukses koneksi.
 """)
+st.image("assets/Picture13.png", caption="Kandao Connect Proyektor")
