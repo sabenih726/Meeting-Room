@@ -15,17 +15,17 @@ if st.session_state.page == "Beranda":
     st.write("Selamat datang di panduan interaktif ini. Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.")
     st.markdown("Pilih panduan di bawah ini:")
 
-    col1, col2, col3, col4, col5 = st.columns(5)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         if st.button("Panduan Proyektor"):
             set_page("Panduan Proyektor")
-    with col3:
+    with col2:
         if st.button("Panduan Kamera"):
             set_page("Panduan Kamera")
-    with col4:
+    with col3:
         if st.button("Remote & Fitur"):
             set_page("Remote & Fitur")
-    with col5:
+    with col4:
         if st.button("FAQ & Troubleshooting"):
             set_page("FAQ & Troubleshooting")
 
