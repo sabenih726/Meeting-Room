@@ -12,7 +12,10 @@ def load_image(path):
 st.markdown("""
     <style>
         body {
-            background-color: #f7f9fc;
+            background-color: #f0f2f6;
+        }
+        .stApp {
+            background-color: #f0f2f6;
         }
         .main {
             padding-top: 1rem;
