@@ -97,7 +97,16 @@ elif page == "Panduan Kamera":
     4. Pastikan lampu biru menyala sebagai indikator.
     """)
     st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
-    st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
+
+    st.subheader("🔹 B. Alur Pemasangan Kamera")
+    st.markdown("""
+    1. Hubungkan ADAPTER ke Device dan listrik menggunakan kabel USB C to C.  
+    2. Nyalakan kamera pastikan lampu power menyala.  
+    3. Hubungkan kabel HDMI dari proyektor ke kamera.  
+    4. Kamera sudah terdisplay di screen projector.
+    5. Buka aplikasi yang digunakan dan terima undangan meeting dengan remote control.
+    """)
+    st.image(load_image("assets/Picture14.png"), caption="Koneksi Kamera ke Proyektor")
 
     st.subheader("🔸 C. Flowchart Topologi Penggunaan Kamera Kandao")
     st.image(load_image("assets/flowchart_topologi_kandao.png"), caption="Topologi Sistem Kamera Kandao")  # Ganti dengan flowchart Anda
