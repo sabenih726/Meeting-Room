@@ -46,8 +46,8 @@ if page == "Beranda":
     with col1:
         st.image(load_image("assets/logo_trakindo.png"), width=400)
     with col2:
-        st.markdown("<div class='title-header'>Panduan Proyektor dan Kamera Kandao</div>", unsafe_allow_html=True)
-        st.markdown("<div class='subtitle'>Website ini dirancang untuk membantu Anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='title-header'>User Guidelines Projektor & Camera Meeting</div>", unsafe_allow_html=True)
+        st.markdown("<div class='subtitle'>Konten untuk membantu anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.</div>", unsafe_allow_html=True)
 
     st.markdown("---")
     st.info("📌 **Silakan pilih panduan dari menu di atas untuk memulai.**")
