@@ -97,7 +97,8 @@ elif page == "Panduan Kamera":
     4. Pastikan lampu biru menyala sebagai indikator.
     """)
     st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
-
+    st.image(load_image("assets/Picture15.png"), caption="Koneksi Kamera ke Proyektor")
+    
     st.subheader("🔸 C. Flowchart Topologi Penggunaan Kamera Kandao")
     st.image(load_image("assets/Picture14.png"), caption="Topologi Sistem Kamera Kandao")  # Ganti dengan flowchart Anda
     st.markdown("""
