@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title="Panduan Proyektor & Kamera Kandao", layout="wide")
+st.set_page_config(page_title="User Guidelines Projektor & Camera Meeting", layout="wide")
 
 # Load Gambar
 @st.cache_data
@@ -96,6 +96,7 @@ elif page == "Panduan Kamera":
     3. Sambungkan ke jaringan Wi-Fi **TU MOBILE**.  
     4. Pastikan lampu biru menyala sebagai indikator.
     """)
+    st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
     st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
 
     st.subheader("🔸 C. Flowchart Topologi Penggunaan Kamera Kandao")
