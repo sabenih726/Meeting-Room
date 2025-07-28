@@ -325,7 +325,7 @@ def show_camera_guide():
     st.markdown("""
         <div class="step-item">
             <span class="step-number">A</span>
-            <strong>Koneksi ke Laptop</strong>
+            <strong>🔹 Koneksi ke Laptop</strong>
         </div>
     """, unsafe_allow_html=True)
     
@@ -336,11 +336,24 @@ def show_camera_guide():
     4. Pilih **Kandao Meeting Pro** di pengaturan kamera.  
     5. Pastikan **lampu biru** menyala.
     """)
+    
+    # Try to load and display images for laptop connection
+    img1 = load_image("assets/kandao_power_button.png")
+    if img1:
+        st.image(img1, caption="Tombol Power Kamera")
+    else:
+        st.info("📷 Gambar: Tombol Power Kamera")
+        
+    img2 = load_image("assets/Picture15.png")
+    if img2:
+        st.image(img2, caption="Koneksi Kamera ke laptop")
+    else:
+        st.info("📷 Gambar: Koneksi Kamera ke laptop")
 
     st.markdown("""
         <div class="step-item">
             <span class="step-number">B</span>
-            <strong>Koneksi ke Proyektor</strong>
+            <strong>🔹 Koneksi ke Proyektor</strong>
         </div>
     """, unsafe_allow_html=True)
     
@@ -349,6 +362,33 @@ def show_camera_guide():
     2. Nyalakan kamera jika belum aktif.  
     3. Sambungkan ke jaringan Wi-Fi **TU MOBILE**.  
     4. Pastikan lampu biru menyala sebagai indikator.
+    """)
+    
+    img3 = load_image("assets/Picture13.png")
+    if img3:
+        st.image(img3, caption="Koneksi Kamera ke Proyektor")
+    else:
+        st.info("📷 Gambar: Koneksi Kamera ke Proyektor")
+    
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">C</span>
+            <strong>🔸 Flowchart Topologi Penggunaan Kamera Kandao</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    img4 = load_image("assets/Picture14.png")
+    if img4:
+        st.image(img4, caption="Topologi Sistem Kamera Kandao")
+    else:
+        st.info("📷 Gambar: Topologi Sistem Kamera Kandao")
+    
+    st.markdown("""
+    1. Hubungkan ADAPTER ke Device dan listrik menggunakan kabel USB C to C.  
+    2. Nyalakan kamera pastikan lampu power menyala.  
+    3. Hubungkan kabel HDMI dari proyektor ke kamera.  
+    4. Kamera sudah terdisplay di screen projector.
+    5. Buka aplikasi yang digunakan dan terima undangan meeting dengan remote control.
     """)
     
     st.markdown('</div>', unsafe_allow_html=True)
