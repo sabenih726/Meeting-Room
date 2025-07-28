@@ -3,7 +3,7 @@ from PIL import Image
 import time
 
 st.set_page_config(
-    page_title="Meeting Room Self-Service Kiosk", 
+    page_title="Meeting Room User Guidelines", 
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -24,9 +24,9 @@ st.markdown("""
         footer {visibility: hidden;}
         .stDeployButton {display:none;}
         
-        /* Background and main container */
+        /* Background and main container - Trakindo Style */
         .stApp {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #fbbf24 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
@@ -55,9 +55,9 @@ st.markdown("""
             line-height: 1.6;
         }
         
-        /* Kiosk button styling */
+        /* Kiosk button styling - Trakindo Colors */
         .kiosk-button {
-            background: linear-gradient(145deg, #6c5ce7, #a29bfe);
+            background: linear-gradient(145deg, #1d4ed8, #3b82f6);
             border: none;
             border-radius: 25px;
             padding: 2rem 1.5rem;
@@ -68,7 +68,7 @@ st.markdown("""
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.3);
             min-height: 120px;
             display: flex;
             flex-direction: column;
@@ -79,8 +79,8 @@ st.markdown("""
         
         .kiosk-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(108, 92, 231, 0.4);
-            background: linear-gradient(145deg, #5f4fcf, #9b94ff);
+            box-shadow: 0 12px 35px rgba(29, 78, 216, 0.4);
+            background: linear-gradient(145deg, #1e40af, #2563eb);
         }
         
         .kiosk-button-icon {
@@ -111,9 +111,9 @@ st.markdown("""
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        /* Navigation buttons */
+        /* Navigation buttons - Trakindo Theme */
         .nav-button {
-            background: #74b9ff;
+            background: #f59e0b;
             color: white;
             border: none;
             padding: 0.8rem 2rem;
@@ -125,12 +125,12 @@ st.markdown("""
         }
         
         .nav-button:hover {
-            background: #0984e3;
+            background: #d97706;
             transform: translateY(-2px);
         }
         
         .nav-button.active {
-            background: #00b894;
+            background: #1d4ed8;
         }
         
         /* Time display */
@@ -145,17 +145,17 @@ st.markdown("""
             font-weight: bold;
         }
         
-        /* Steps styling */
+        /* Steps styling - Trakindo Colors */
         .step-item {
             background: #f8f9fa;
             padding: 1.5rem;
             margin: 1rem 0;
             border-radius: 15px;
-            border-left: 5px solid #6c5ce7;
+            border-left: 5px solid #1d4ed8;
         }
         
         .step-number {
-            background: #6c5ce7;
+            background: #1d4ed8;
             color: white;
             width: 30px;
             height: 30px;
@@ -167,17 +167,17 @@ st.markdown("""
             margin-right: 1rem;
         }
         
-        /* Warning and info boxes */
+        /* Warning and info boxes - Trakindo Theme */
         .warning-box {
-            background: linear-gradient(145deg, #ffeaa7, #fdcb6e);
+            background: linear-gradient(145deg, #fef3c7, #fbbf24);
             padding: 1.5rem;
             border-radius: 15px;
             margin: 1rem 0;
-            border-left: 5px solid #e17055;
+            border-left: 5px solid #f59e0b;
         }
         
         .info-box {
-            background: linear-gradient(145deg, #74b9ff, #0984e3);
+            background: linear-gradient(145deg, #3b82f6, #1d4ed8);
             color: white;
             padding: 1.5rem;
             border-radius: 15px;
@@ -206,8 +206,7 @@ def show_home():
     st.markdown("""
         <div class="welcome-header">
             <div class="welcome-title">Welcome</div>
-            <div class="welcome-subtitle">Self Registration Kiosk<br>
-            Meeting Room Equipment Guidelines</div>
+            <div class="welcome-subtitle">Meeting Room Equipment Guidelines</div>
         </div>
     """, unsafe_allow_html=True)
     
