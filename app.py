@@ -1,85 +1,334 @@
 import streamlit as st
 from PIL import Image
+import time
 
-st.set_page_config(page_title="User Guidelines Projektor & Camera Meeting", layout="wide")
+st.set_page_config(
+    page_title="Meeting Room Self-Service Kiosk", 
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
 
 # Load Gambar
 @st.cache_data
 def load_image(path):
-    return Image.open(path)
+    try:
+        return Image.open(path)
+    except:
+        return None
 
-# Styling tambahan
+# Custom CSS untuk tampilan kiosk
 st.markdown("""
     <style>
-        body {
-            background-color: #f0f2f6;
-        }
+        /* Hide Streamlit elements */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .stDeployButton {display:none;}
+        
+        /* Background and main container */
         .stApp {
-            background-color: #f0f2f6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .main {
-            padding-top: 1rem;
+        
+        /* Welcome header */
+        .welcome-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #003366;
-        }
-        .title-header {
-            font-size: 32px;
+        
+        .welcome-title {
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #1a237e;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
-        .subtitle {
-            font-size: 18px;
-            color: #424242;
+        
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        /* Kiosk button styling */
+        .kiosk-button {
+            background: linear-gradient(145deg, #6c5ce7, #a29bfe);
+            border: none;
+            border-radius: 25px;
+            padding: 2rem 1.5rem;
+            margin: 1rem;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.3);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .kiosk-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(108, 92, 231, 0.4);
+            background: linear-gradient(145deg, #5f4fcf, #9b94ff);
+        }
+        
+        .kiosk-button-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kiosk-button-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .kiosk-button-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+        
+        /* Content area */
+        .content-area {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Navigation buttons */
+        .nav-button {
+            background: #74b9ff;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            margin: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: #0984e3;
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.active {
+            background: #00b894;
+        }
+        
+        /* Time display */
+        .time-display {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        /* Steps styling */
+        .step-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            border-left: 5px solid #6c5ce7;
+        }
+        
+        .step-number {
+            background: #6c5ce7;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        /* Warning and info boxes */
+        .warning-box {
+            background: linear-gradient(145deg, #ffeaa7, #fdcb6e);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border-left: 5px solid #e17055;
+        }
+        
+        .info-box {
+            background: linear-gradient(145deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Navigasi
-page = st.radio("📖 Pilih Halaman:", 
-                ("Beranda", "Panduan Proyektor", "Panduan Kamera", "Remote & Fitur", "FAQ & Troubleshooting"),
-                horizontal=True)
+# Initialize session state
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = 'home'
 
-# Halaman Beranda
-if page == "Beranda":
+# Time display
+current_time = time.strftime("%H:%M")
+current_date = time.strftime("%A, %d %B %Y")
+st.markdown(f"""
+    <div class="time-display">
+        {current_time}<br>
+        <small>{current_date}</small>
+    </div>
+""", unsafe_allow_html=True)
+
+# Main navigation function
+def show_home():
+    # Welcome header
+    st.markdown("""
+        <div class="welcome-header">
+            <div class="welcome-title">Welcome</div>
+            <div class="welcome-subtitle">Self Registration Kiosk<br>
+            Meeting Room Equipment Guidelines</div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Main menu buttons in grid layout
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if st.button("📺", key="projector_btn", help="Panduan Proyektor"):
+            st.session_state.current_page = 'projector'
+            st.rerun()
+        st.markdown("""
+            <div class="kiosk-button" onclick="">
+                <div class="kiosk-button-icon">📺</div>
+                <div class="kiosk-button-text">PROYEKTOR</div>
+                <div class="kiosk-button-desc">Panduan menghubungkan proyektor</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        if st.button("🎛️", key="remote_btn", help="Remote & Fitur"):
+            st.session_state.current_page = 'remote'
+            st.rerun()
+        st.markdown("""
+            <div class="kiosk-button">
+                <div class="kiosk-button-icon">🎛️</div>
+                <div class="kiosk-button-text">REMOTE & FITUR</div>
+                <div class="kiosk-button-desc">Penggunaan remote control</div>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        if st.button("📷", key="camera_btn", help="Panduan Kamera"):
+            st.session_state.current_page = 'camera'
+            st.rerun()
+        st.markdown("""
+            <div class="kiosk-button">
+                <div class="kiosk-button-icon">📷</div>
+                <div class="kiosk-button-text">KAMERA</div>
+                <div class="kiosk-button-desc">Setup kamera meeting</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        if st.button("❓", key="faq_btn", help="FAQ & Troubleshooting"):
+            st.session_state.current_page = 'faq'
+            st.rerun()
+        st.markdown("""
+            <div class="kiosk-button">
+                <div class="kiosk-button-icon">❓</div>
+                <div class="kiosk-button-text">FAQ & HELP</div>
+                <div class="kiosk-button-desc">Bantuan dan troubleshooting</div>
+            </div>
+        """, unsafe_allow_html=True)
+
+def show_projector_guide():
+    st.markdown('<div class="content-area">', unsafe_allow_html=True)
+    
     col1, col2 = st.columns([1, 8])
     with col1:
-        st.image(load_image("assets/logo_trakindo.png"), width=400)
+        if st.button("🏠 Home", key="home_from_proj"):
+            st.session_state.current_page = 'home'
+            st.rerun()
     with col2:
-        st.markdown("<div class='title-header'>User Guidelines Projektor & Camera Meeting</div>", unsafe_allow_html=True)
-        st.markdown("<div class='subtitle'>Konten untuk membantu anda menghubungkan laptop ke proyektor dan menggunakan kamera Kandao Meeting Pro dengan mudah.</div>", unsafe_allow_html=True)
+        st.markdown("<h1 style='color: #2c3e50;'>📺 Panduan Menyambungkan Proyektor</h1>", unsafe_allow_html=True)
 
-    st.markdown("---")
-    st.info("📌 **Silakan pilih panduan dari menu di atas untuk memulai.**")
-
-# Halaman Panduan Proyektor
-elif page == "Panduan Proyektor":
-    st.title("📺 Panduan Menyambungkan Proyektor")
-
-    st.markdown("#### A. Menggunakan Shortcut Keyboard")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">A</span>
+            <strong>Menggunakan Shortcut Keyboard</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.write("1. Pastikan proyektor menyala (tombol power di remote).")
     st.write("2. Tekan tombol `Windows + K` pada laptop Anda.")
-    st.image(load_image("assets/windows_k_shortcut.png"), caption="Shortcut Windows + K")
+    
+    # Try to load and display image
+    img = load_image("assets/windows_k_shortcut.png")
+    if img:
+        st.image(img, caption="Shortcut Windows + K")
+    else:
+        st.info("📷 Gambar shortcut Windows + K")
+    
     st.write("3. Pilih nama ruang meeting yang muncul.")
 
-    st.divider()
+    st.markdown("---")
 
-    st.markdown("#### B. Menggunakan Kabel HDMI/VGA")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">B</span>
+            <strong>Menggunakan Kabel HDMI/VGA</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.write("1. Sambungkan kabel dari proyektor ke laptop.")
-    st.image(load_image("assets/colokan_hdmi.png"), caption="Contoh port HDMI")
     st.write("2. Pilih input HDMI/VGA di layar proyektor.")
-    st.image(load_image("assets/home_screen_hdmi.png"), caption="Input HDMI")
     st.write("3. Jika berhasil, tampilan laptop akan muncul di layar.")
-    st.image(load_image("assets/Picture11.png"), caption="Tampilan Proyektor")
 
-    st.warning("🔌 **Jangan lupa matikan proyektor setelah digunakan.**")
-    st.image(load_image("assets/Picture12.png"), caption="Remote Power Off")
+    st.markdown("""
+        <div class="warning-box">
+            <strong>🔌 Jangan lupa matikan proyektor setelah digunakan.</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Halaman Panduan Kamera
-elif page == "Panduan Kamera":
-    st.title("📷 Panduan Penggunaan Kamera Kandao")
+def show_camera_guide():
+    st.markdown('<div class="content-area">', unsafe_allow_html=True)
+    
+    col1, col2 = st.columns([1, 8])
+    with col1:
+        if st.button("🏠 Home", key="home_from_cam"):
+            st.session_state.current_page = 'home'
+            st.rerun()
+    with col2:
+        st.markdown("<h1 style='color: #2c3e50;'>📷 Panduan Penggunaan Kamera Kandao</h1>", unsafe_allow_html=True)
 
-    st.subheader("🔹 A. Koneksi ke Laptop")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">A</span>
+            <strong>Koneksi ke Laptop</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     1. Aktifkan kamera Kandao dengan menekan tombol **ON/OFF**.  
     2. Hubungkan kamera ke laptop menggunakan kabel **USB OUT**.  
@@ -87,68 +336,115 @@ elif page == "Panduan Kamera":
     4. Pilih **Kandao Meeting Pro** di pengaturan kamera.  
     5. Pastikan **lampu biru** menyala.
     """)
-    st.image(load_image("assets/kandao_power_button.png"), caption="Tombol Power Kamera")
-    st.image(load_image("assets/Picture15.png"), caption="Koneksi Kamera ke laptop")
 
-    st.subheader("🔹 B. Koneksi ke Proyektor")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">B</span>
+            <strong>Koneksi ke Proyektor</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     1. Hubungkan kamera ke layar/monitor melalui kabel **HDMI**.  
     2. Nyalakan kamera jika belum aktif.  
     3. Sambungkan ke jaringan Wi-Fi **TU MOBILE**.  
     4. Pastikan lampu biru menyala sebagai indikator.
     """)
-    st.image(load_image("assets/Picture13.png"), caption="Koneksi Kamera ke Proyektor")
     
-    st.subheader("🔸 C. Flowchart Topologi Penggunaan Kamera Kandao")
-    st.image(load_image("assets/Picture14.png"), caption="Topologi Sistem Kamera Kandao")  # Ganti dengan flowchart Anda
+    st.markdown('</div>', unsafe_allow_html=True)
+
+def show_remote_guide():
+    st.markdown('<div class="content-area">', unsafe_allow_html=True)
+    
+    col1, col2 = st.columns([1, 8])
+    with col1:
+        if st.button("🏠 Home", key="home_from_remote"):
+            st.session_state.current_page = 'home'
+            st.rerun()
+    with col2:
+        st.markdown("<h1 style='color: #2c3e50;'>🎛️ Remote Control & Fitur Kamera Kandao</h1>", unsafe_allow_html=True)
+
     st.markdown("""
-    1. Hubungkan ADAPTER ke Device dan listrik menggunakan kabel USB C to C.  
-    2. Nyalakan kamera pastikan lampu power menyala.  
-    3. Hubungkan kabel HDMI dari proyektor ke kamera.  
-    4. Kamera sudah terdisplay di screen projector.
-    5. Buka aplikasi yang digunakan dan terima undangan meeting dengan remote control.
-    """)
-
-# Halaman Remote & Fitur
-elif page == "Remote & Fitur":
-    st.title("🎛️ Remote Control & Fitur Kamera Kandao")
-
-    st.subheader("🔹 Fungsi Remote")
+        <div class="step-item">
+            <span class="step-number">📱</span>
+            <strong>Fungsi Remote</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     - **Tombol Daya:** Nyalakan/matikan kamera  
     - **Mode Mouse:** Navigasi kursor pada layar  
     - **Volume:** Atur suara  
     - **Mikrofon:** Aktif/nonaktif suara
     """)
-    st.image(load_image("assets/kandao_remote_buttons.png"), caption="Remote Kamera")
 
-    st.subheader("🔹 Fitur Unggulan Kamera Kandao Meeting Pro")
     st.markdown("""
-    - 🎙️ **Audio Jernih**  
-    - 🎥 **Video Berkualitas Tinggi**  
-    - ⚡ **Kemudahan Instalasi**
-    """)
-    st.image(load_image("assets/kandao_features_summary.png.png"), caption="Fitur Unggulan")
+        <div class="info-box">
+            <h3>🔹 Fitur Unggulan Kamera Kandao Meeting Pro</h3>
+            <ul>
+                <li>🎙️ <strong>Audio Jernih</strong></li>
+                <li>🎥 <strong>Video Berkualitas Tinggi</strong></li>
+                <li>⚡ <strong>Kemudahan Instalasi</strong></li>
+            </ul>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Halaman FAQ & Troubleshooting
-elif page == "FAQ & Troubleshooting":
-    st.title("❓ FAQ & Troubleshooting")
+def show_faq():
+    st.markdown('<div class="content-area">', unsafe_allow_html=True)
+    
+    col1, col2 = st.columns([1, 8])
+    with col1:
+        if st.button("🏠 Home", key="home_from_faq"):
+            st.session_state.current_page = 'home'
+            st.rerun()
+    with col2:
+        st.markdown("<h1 style='color: #2c3e50;'>❓ FAQ & Troubleshooting</h1>", unsafe_allow_html=True)
 
-    st.subheader("🔹 Proyektor tidak terdeteksi?")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">?</span>
+            <strong>Proyektor tidak terdeteksi?</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     - Cek apakah proyektor sudah menyala.  
     - Ganti kabel HDMI/VGA jika perlu.  
     - Pastikan port laptop tidak bermasalah.
     """)
 
-    st.subheader("🔹 Kamera tidak muncul di Zoom/Teams?")
+    st.markdown("""
+        <div class="step-item">
+            <span class="step-number">?</span>
+            <strong>Kamera tidak muncul di Zoom/Teams?</strong>
+        </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("""
     - Pastikan kabel USB tersambung dengan baik.  
     - Periksa pengaturan perangkat di aplikasi.  
     - Coba restart Zoom/Teams.
     """)
 
-    st.subheader("🔹 Kontak Bantuan")
     st.markdown("""
-    Hubungi tim **Facility** atau **IT Support** untuk bantuan lebih lanjut melalui grup internal atau nomor resmi.
-    """)
+        <div class="info-box">
+            <h3>📞 Kontak Bantuan</h3>
+            <p>Hubungi tim <strong>Facility</strong> atau <strong>IT Support</strong> untuk bantuan lebih lanjut melalui grup internal atau nomor resmi.</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Main app logic
+if st.session_state.current_page == 'home':
+    show_home()
+elif st.session_state.current_page == 'projector':
+    show_projector_guide()
+elif st.session_state.current_page == 'camera':
+    show_camera_guide()
+elif st.session_state.current_page == 'remote':
+    show_remote_guide()
+elif st.session_state.current_page == 'faq':
+    show_faq()
