@@ -17,112 +17,105 @@ def load_image(path):
         st.error(f"⚠️ Gambar tidak ditemukan: {path}")
         return None
 
-# ============ STYLING CSS - FIXED VERSION ============
+# ============ STYLING CSS ALTERNATIF ============
 st.markdown("""
     <style>
-        /* Reset & Base */
-        * {
-            box-sizing: border-box;
-        }
-        
+        /* Background */
         body {
             background-color: #f0f2f6;
         }
-        
         .stApp {
             background-color: #f0f2f6;
         }
-        
         .main {
             padding-top: 1rem;
         }
         
         /* Typography */
         h1, h2, h3 {
-            color: #003366 !important;
+            color: #003366;
         }
-        
         .title-header {
             font-size: 32px;
             font-weight: bold;
             color: #1a237e;
             margin-bottom: 0;
         }
-        
         .subtitle {
             font-size: 18px;
             color: #424242;
             margin-top: 10px;
         }
         
-        /* ========== SELECTBOX COMPLETE FIX ========== */
+        /* ========== DROPDOWN FIX AGRESIF ========== */
         
-        /* Container utama selectbox */
-        .stSelectbox {
-            color-scheme: light;
-        }
-        
-        /* Label selectbox */
-        .stSelectbox > label {
+        /* Semua teks di selectbox */
+        .stSelectbox * {
             color: #1a237e !important;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 8px;
         }
         
-        /* Dropdown trigger button */
-        .stSelectbox > div > div > div {
-            background-color: white !important;
-            border: 2px solid #1976D2 !important;
-            border-radius: 10px !important;
-            padding: 10px 15px !important;
-        }
-        
-        /* Text inside dropdown (CRITICAL) */
-        .stSelectbox [data-baseweb="select"] > div,
-        .stSelectbox [data-baseweb="select"] span,
-        .stSelectbox [data-baseweb="select"] div {
-            color: #212121 !important;
-            font-size: 16px !important;
-        }
-        
-        /* Dropdown arrow icon */
-        .stSelectbox svg {
-            fill: #1976D2 !important;
-        }
-        
-        /* Dropdown menu saat dibuka */
-        ul[role="listbox"] {
-            background-color: white !important;
-            border: 1px solid #1976D2 !important;
-            border-radius: 8px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            margin-top: 4px !important;
-        }
-        
-        /* Each option in dropdown */
-        li[role="option"] {
-            color: #212121 !important;
-            background-color: white !important;
-            padding: 12px 16px !important;
-            font-size: 15px !important;
-        }
-        
-        /* Option on hover */
-        li[role="option"]:hover {
-            background-color: #E3F2FD !important;
-            color: #1565C0 !important;
-            cursor: pointer !important;
-        }
-        
-        /* Selected option */
-        li[role="option"][aria-selected="true"] {
-            background-color: #BBDEFB !important;
-            color: #0D47A1 !important;
+        /* Label */
+        .stSelectbox label {
+            color: #1a237e !important;
             font-weight: 600 !important;
         }
         
-        /* ========== END SELECTBOX FIX ========== */
+        /* Container dropdown */
+        [data-baseweb="select"] {
+            background-color: white !important;
+        }
+        
+        /* Inner container */
+        [data-baseweb="select"] > div {
+            background-color: white !important;
+            border: 2px solid #1976D2 !important;
+            border-radius: 10px !important;
+        }
+        
+        /* Value container (teks yang terlihat) */
+        [data-baseweb="select"] [data-baseweb="base-input"] {
+            background-color: white !important;
+        }
+        
+        /* Selected value text */
+        [data-baseweb="select"] [data-baseweb="base-input"] > div {
+            color: #212121 !important;
+        }
+        
+        /* All spans inside */
+        [data-baseweb="select"] span,
+        [data-baseweb="select"] div {
+            color: #212121 !important;
+        }
+        
+        /* Dropdown menu */
+        [role="listbox"] {
+            background-color: white !important;
+            border: 1px solid #1976D2 !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Each option */
+        [role="option"] {
+            color: #212121 !important;
+            background-color: white !important;
+            padding: 10px 16px !important;
+        }
+        
+        /* Option hover */
+        [role="option"]:hover {
+            background-color: #E3F2FD !important;
+            color: #0D47A1 !important;
+        }
+        
+        /* Selected option */
+        [role="option"][aria-selected="true"] {
+            background-color: #BBDEFB !important;
+            color: #0D47A1 !important;
+            font-weight: bold !important;
+        }
+        
+        /* ========== END DROPDOWN FIX ========== */
         
         /* Hide Sidebar */
         [data-testid="stSidebar"] {
@@ -142,7 +135,7 @@ st.markdown("""
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        /* Alert boxes */
+        /* Info/Warning boxes */
         .stAlert {
             border-radius: 8px;
         }
