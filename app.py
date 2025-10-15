@@ -17,449 +17,134 @@ def load_image(path):
         st.error(f"⚠️ Gambar tidak ditemukan: {path}")
         return None
 
-# ============ STYLING CSS LENGKAP ============
+# ============ STYLING CSS ALTERNATIF ============
 st.markdown("""
     <style>
-        /* ========== RESET & BASE STYLES ========== */
-        * {
-            box-sizing: border-box;
-        }
-        
+        /* Background */
         body {
             background-color: #f0f2f6;
         }
-        
         .stApp {
             background-color: #f0f2f6;
         }
-        
         .main {
             padding-top: 1rem;
         }
         
-        /* ========== TYPOGRAPHY ========== */
+        /* Typography */
         h1, h2, h3 {
-            color: #003366 !important;
+            color: #003366;
         }
-        
         .title-header {
             font-size: 32px;
             font-weight: bold;
             color: #1a237e;
             margin-bottom: 0;
         }
-        
         .subtitle {
             font-size: 18px;
             color: #424242;
             margin-top: 10px;
         }
         
-        /* ========== DROPDOWN SELECTBOX STYLES ========== */
+        /* ========== DROPDOWN FIX AGRESIF ========== */
         
-        /* Container utama selectbox */
-        .stSelectbox {
-            color-scheme: light;
-        }
-        
-        /* Label selectbox */
-        .stSelectbox > label {
+        /* Semua teks di selectbox */
+        .stSelectbox * {
             color: #1a237e !important;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 8px;
         }
         
-        /* Dropdown trigger button */
-        .stSelectbox > div > div > div {
-            background-color: white !important;
-            border: 2px solid #1976D2 !important;
-            border-radius: 10px !important;
-            padding: 10px 15px !important;
-        }
-        
-        /* Text inside dropdown */
-        .stSelectbox [data-baseweb="select"] > div,
-        .stSelectbox [data-baseweb="select"] span,
-        .stSelectbox [data-baseweb="select"] div {
-            color: #212121 !important;
-            font-size: 16px !important;
-        }
-        
-        /* Dropdown arrow icon */
-        .stSelectbox svg {
-            fill: #1976D2 !important;
-        }
-        
-        /* Dropdown menu saat dibuka */
-        ul[role="listbox"] {
-            background-color: white !important;
-            border: 1px solid #1976D2 !important;
-            border-radius: 8px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            margin-top: 4px !important;
-        }
-        
-        /* Each option in dropdown */
-        li[role="option"] {
-            color: #212121 !important;
-            background-color: white !important;
-            padding: 12px 16px !important;
-            font-size: 15px !important;
-        }
-        
-        /* Option on hover */
-        li[role="option"]:hover {
-            background-color: #E3F2FD !important;
-            color: #1565C0 !important;
-            cursor: pointer !important;
-        }
-        
-        /* Selected option */
-        li[role="option"][aria-selected="true"] {
-            background-color: #BBDEFB !important;
-            color: #0D47A1 !important;
+        /* Label */
+        .stSelectbox label {
+            color: #1a237e !important;
             font-weight: 600 !important;
         }
         
-        /* ========== KONTROL UKURAN GAMBAR (MAIN SECTION) ========== */
-        
-        /* Container gambar - Center alignment */
-        .stImage {
-            text-align: center;
-            margin: 20px 0;
+        /* Container dropdown */
+        [data-baseweb="select"] {
+            background-color: white !important;
         }
         
-        /* Default: Semua gambar maksimal 500px */
-        .stImage > img {
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            max-width: 500px !important;
-            width: auto !important;
-            height: auto !important;
-            margin: 15px auto;
-            display: block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Inner container */
+        [data-baseweb="select"] > div {
+            background-color: white !important;
+            border: 2px solid #1976D2 !important;
+            border-radius: 10px !important;
         }
         
-        /* Hover effect pada gambar */
-        .stImage > img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-            cursor: pointer;
+        /* Value container (teks yang terlihat) */
+        [data-baseweb="select"] [data-baseweb="base-input"] {
+            background-color: white !important;
         }
         
-        /* Caption styling - lebih jelas */
-        .stImage > figcaption {
-            font-size: 14px !important;
-            color: #666 !important;
-            font-style: italic;
-            margin-top: 10px;
-            text-align: center;
-            line-height: 1.4;
+        /* Selected value text */
+        [data-baseweb="select"] [data-baseweb="base-input"] > div {
+            color: #212121 !important;
         }
         
-        /* ========== UKURAN GAMBAR BERDASARKAN LOKASI ========== */
-        
-        /* Gambar di dalam kolom (lebih kecil) */
-        .stColumn .stImage > img {
-            max-width: 320px !important;
+        /* All spans inside */
+        [data-baseweb="select"] span,
+        [data-baseweb="select"] div {
+            color: #212121 !important;
         }
         
-        /* Gambar di kolom kanan (biasanya lebih kecil) */
-        .stColumn:nth-child(2) .stImage > img {
-            max-width: 280px !important;
+        /* Dropdown menu */
+        [role="listbox"] {
+            background-color: white !important;
+            border: 1px solid #1976D2 !important;
+            border-radius: 8px !important;
         }
         
-        /* Gambar di kolom tengah (sedang) */
-        .stColumn:nth-child(3) .stImage > img {
-            max-width: 400px !important;
+        /* Each option */
+        [role="option"] {
+            color: #212121 !important;
+            background-color: white !important;
+            padding: 10px 16px !important;
         }
         
-        /* Gambar dalam expander (sedang) */
-        .streamlit-expanderContent .stImage > img {
-            max-width: 450px !important;
+        /* Option hover */
+        [role="option"]:hover {
+            background-color: #E3F2FD !important;
+            color: #0D47A1 !important;
         }
         
-        /* Gambar dalam expander yang terbuka (expanded) */
-        details[open] .stImage > img {
-            max-width: 480px !important;
+        /* Selected option */
+        [role="option"][aria-selected="true"] {
+            background-color: #BBDEFB !important;
+            color: #0D47A1 !important;
+            font-weight: bold !important;
         }
         
-        /* Gambar di container utama (lebih besar) */
-        .main > .block-container .stImage > img {
-            max-width: 600px !important;
-        }
+        /* ========== END DROPDOWN FIX ========== */
         
-        /* ========== UKURAN KHUSUS BERDASARKAN JENIS ========== */
-        
-        /* Screenshot besar (untuk diagram/flowchart) */
-        .stImage[data-testid*="screenshot"] > img,
-        .stImage.large-image > img {
-            max-width: 700px !important;
-        }
-        
-        /* Gambar kecil (icon/button) */
-        .stImage.small-image > img {
-            max-width: 200px !important;
-        }
-        
-        /* Gambar medium (ilustrasi) */
-        .stImage.medium-image > img {
-            max-width: 400px !important;
-        }
-        
-        /* ========== RESPONSIVE BREAKPOINTS ========== */
-        
-        /* Tablet (max-width: 1024px) */
-        @media (max-width: 1024px) {
-            .stImage > img {
-                max-width: 450px !important;
-            }
-            
-            .stColumn .stImage > img {
-                max-width: 280px !important;
-            }
-        }
-        
-        /* Mobile Large (max-width: 768px) */
-        @media (max-width: 768px) {
-            .stImage > img {
-                max-width: 100% !important;
-                max-height: 400px !important;
-            }
-            
-            .stColumn .stImage > img {
-                max-width: 100% !important;
-            }
-            
-            /* Di mobile, gambar dalam kolom juga full width */
-            .stColumn:nth-child(2) .stImage > img {
-                max-width: 100% !important;
-            }
-        }
-        
-        /* Mobile Small (max-width: 480px) */
-        @media (max-width: 480px) {
-            .stImage > img {
-                max-width: 100% !important;
-                max-height: 300px !important;
-            }
-            
-            .stImage > figcaption {
-                font-size: 12px !important;
-            }
-        }
-        
-        /* ========== LAYOUT KOLOM ========== */
-        
-        /* Kolom dengan rasio 3:2 (teks lebih besar) */
-        .row-widget.stColumns > div:nth-child(1) {
-            flex: 3;
-        }
-        
-        .row-widget.stColumns > div:nth-child(2) {
-            flex: 2;
-        }
-        
-        /* ========== HIDE SIDEBAR ========== */
+        /* Hide Sidebar */
         [data-testid="stSidebar"] {
             display: none;
         }
         
-        /* ========== DIVIDER ========== */
+        /* Divider */
         hr {
             margin: 2rem 0;
             border: none;
             border-top: 2px solid #e0e0e0;
         }
         
-        .stDivider {
-            margin: 1.5rem 0;
+        /* Images */
+        .stImage > img {
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        /* ========== ALERT BOXES ========== */
+        /* Info/Warning boxes */
         .stAlert {
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
         }
         
-        .stAlert > div {
-            padding: 5px 0;
-        }
-        
-        /* Info box */
-        .stAlert[data-baseweb="notification"][kind="info"] {
-            background-color: #E3F2FD;
-            border-left: 4px solid #1976D2;
-        }
-        
-        /* Warning box */
-        .stAlert[data-baseweb="notification"][kind="warning"] {
-            background-color: #FFF3E0;
-            border-left: 4px solid #F57C00;
-        }
-        
-        /* Success box */
-        .stAlert[data-baseweb="notification"][kind="success"] {
-            background-color: #E8F5E9;
-            border-left: 4px solid #388E3C;
-        }
-        
-        /* Error box */
-        .stAlert[data-baseweb="notification"][kind="error"] {
-            background-color: #FFEBEE;
-            border-left: 4px solid #D32F2F;
-        }
-        
-        /* ========== EXPANDER STYLES ========== */
+        /* Expander */
         .streamlit-expanderHeader {
             font-size: 16px;
             font-weight: 600;
-            color: #1a237e;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            padding: 12px 16px;
         }
-        
-        .streamlit-expanderHeader:hover {
-            background-color: #e0e0e0;
-        }
-        
-        .streamlit-expanderContent {
-            padding: 20px 10px;
-            border-left: 2px solid #1976D2;
-            margin-left: 10px;
-        }
-        
-        /* ========== BUTTONS ========== */
-        .stButton > button {
-            background-color: #1976D2;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 24px;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .stButton > button:hover {
-            background-color: #1565C0;
-            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        /* ========== CONTAINERS & SPACING ========== */
-        .block-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-            max-width: 1200px;
-        }
-        
-        .element-container {
-            margin-bottom: 1rem;
-        }
-        
-        /* ========== SCROLLBAR CUSTOM ========== */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #1976D2;
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #1565C0;
-        }
-        
-        /* ========== SPECIAL CLASSES (untuk custom usage) ========== */
-        
-        /* Class untuk gambar full width */
-        .full-width-image {
-            max-width: 100% !important;
-        }
-        
-        /* Class untuk gambar thumbnail */
-        .thumbnail-image {
-            max-width: 150px !important;
-        }
-        
-        /* Class untuk gambar hero/banner */
-        .hero-image {
-            max-width: 900px !important;
-        }
-        
-        /* ========== UTILITIES ========== */
-        
-        /* Center content */
-        .center-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Text alignment */
-        .text-center {
-            text-align: center;
-        }
-        
-        .text-left {
-            text-align: left;
-        }
-        
-        .text-right {
-            text-align: right;
-        }
-        
-        /* Spacing utilities */
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .mt-4 { margin-top: 2rem; }
-        
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .mb-4 { margin-bottom: 2rem; }
-        
-        /* ========== DARK MODE OVERRIDE (jika diperlukan) ========== */
-        @media (prefers-color-scheme: dark) {
-            .stSelectbox, 
-            .stSelectbox *,
-            [data-baseweb="select"],
-            [data-baseweb="select"] * {
-                color: #212121 !important;
-                background-color: white !important;
-            }
-            
-            /* Paksa gambar tetap terlihat di dark mode */
-            .stImage > img {
-                background-color: white;
-                padding: 5px;
-            }
-        }
-        
-        /* ========== PRINT STYLES ========== */
-        @media print {
-            .stImage > img {
-                max-width: 100% !important;
-                page-break-inside: avoid;
-            }
-            
-            .stButton, .stSelectbox {
-                display: none;
-            }
-        }
-        
     </style>
 """, unsafe_allow_html=True)
 
@@ -565,7 +250,6 @@ if page_clean == "Beranda":
     st.success("💡 **Tips:** Gunakan menu dropdown di atas untuk navigasi cepat antar panduan!")
 
 # ============ HALAMAN PANDUAN PROYEKTOR ============
-# ============ HALAMAN PANDUAN PROYEKTOR (REVISED) ============
 elif page_clean == "Panduan Proyektor":
     st.title("📺 Panduan Menyambungkan Proyektor")
     
@@ -574,21 +258,14 @@ elif page_clean == "Panduan Proyektor":
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
         st.markdown("""
-        **Langkah-langkah:**
-        
         1. **Pastikan proyektor menyala** (tekan tombol power di remote proyektor)
         2. **Tekan kombinasi tombol** `Windows + K` pada keyboard laptop Anda
         3. **Pilih nama ruang meeting** yang muncul di layar
         """)
         
-        st.markdown("")
-        
         img = load_image("assets/windows_k_shortcut.png")
         if img:
-            # Gambar di tengah dengan ukuran sedang
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                st.image(img, caption="Shortcut Windows + K", width=400)
+            st.image(img, caption="Shortcut Windows + K", use_container_width=True)
     
     st.divider()
     
@@ -596,61 +273,49 @@ elif page_clean == "Panduan Proyektor":
     st.markdown("### 🔹 B. Menggunakan Kabel HDMI/VGA")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
-        
-        # Langkah 1
-        st.markdown("#### **Langkah 1: Sambungkan Kabel**")
-        col1, col2 = st.columns([3, 2])  # Teks lebih besar dari gambar
+        col1, col2 = st.columns([2, 1])
         
         with col1:
             st.markdown("""
+            **Langkah 1: Sambungkan Kabel**
             - Ambil kabel HDMI atau VGA yang tersedia
             - Sambungkan satu ujung ke proyektor
             - Sambungkan ujung lainnya ke port laptop Anda
-            - Pastikan kabel terpasang dengan kencang
             """)
         
         with col2:
             img = load_image("assets/colokan_hdmi.png")
             if img:
-                st.image(img, caption="Port HDMI", width=250)  # Ukuran kecil
+                st.image(img, caption="Port HDMI", use_container_width=True)
         
-        st.markdown("---")
+        st.markdown("")
         
-        # Langkah 2
-        st.markdown("#### **Langkah 2: Pilih Input**")
-        col3, col4 = st.columns([3, 2])
+        col3, col4 = st.columns([2, 1])
         
         with col3:
             st.markdown("""
+            **Langkah 2: Pilih Input**
             - Gunakan remote proyektor
             - Pilih input HDMI atau VGA sesuai kabel yang digunakan
             - Tunggu beberapa saat hingga layar terdeteksi
-            - Jika tidak muncul, tekan `Windows + P` dan pilih "Duplicate"
             """)
         
         with col4:
             img = load_image("assets/home_screen_hdmi.png")
             if img:
-                st.image(img, caption="Pilih Input HDMI", width=250)
-        
-        st.markdown("---")
-        
-        # Langkah 3
-        st.markdown("#### **Langkah 3: Verifikasi Koneksi**")
-        st.markdown("""
-        - Jika berhasil, tampilan laptop akan muncul di layar proyektor
-        - Sesuaikan resolusi jika diperlukan melalui `Settings > Display`
-        - Atur mode tampilan: Duplicate (sama) atau Extend (perpanjang)
-        """)
+                st.image(img, caption="Pilih Input HDMI", use_container_width=True)
         
         st.markdown("")
         
+        st.markdown("""
+        **Langkah 3: Verifikasi Koneksi**
+        - Jika berhasil, tampilan laptop akan muncul di layar proyektor
+        - Sesuaikan resolusi jika diperlukan melalui `Settings > Display`
+        """)
+        
         img = load_image("assets/Picture11.png")
         if img:
-            # Gambar lebih besar untuk screenshot penting
-            col1, col2, col3 = st.columns([1, 3, 1])
-            with col2:
-                st.image(img, caption="Tampilan Proyektor Berhasil Terhubung", width=600)
+            st.image(img, caption="Tampilan Proyektor Berhasil Terhubung", use_container_width=True)
     
     st.markdown("")
     
@@ -659,12 +324,11 @@ elif page_clean == "Panduan Proyektor":
     
     img = load_image("assets/Picture12.png")
     if img:
-        col1, col2, col3 = st.columns([1.5, 2, 1.5])
+        col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            st.image(img, caption="Tekan tombol Power Off pada remote", width=350)
+            st.image(img, caption="Tekan tombol Power Off pada remote", use_container_width=True)
 
 # ============ HALAMAN PANDUAN KAMERA ============
-# ============ HALAMAN PANDUAN KAMERA (REVISED) ============
 elif page_clean == "Panduan Kamera":
     st.title("📷 Panduan Penggunaan Kamera Kandao Meeting Pro")
     
@@ -672,46 +336,42 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 A. Koneksi ke Laptop")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
-        
-        # Teks penjelasan di atas
-        st.markdown("""
-        **Langkah-langkah:**
-        
-        1. **Aktifkan kamera Kandao**
-           - Tekan dan tahan tombol **ON/OFF** pada kamera
-           - Tunggu hingga lampu indikator menyala
-        
-        2. **Hubungkan ke laptop**
-           - Gunakan kabel **USB OUT** yang tersedia
-           - Sambungkan ke port USB laptop Anda
-        
-        3. **Buka aplikasi meeting**
-           - Jalankan **Zoom**, **Microsoft Teams**, atau aplikasi meeting lainnya
-        
-        4. **Pilih kamera di pengaturan**
-           - Masuk ke Settings > Video/Camera
-           - Pilih **Kandao Meeting Pro** sebagai kamera
-        
-        5. **Verifikasi koneksi**
-           - Pastikan **lampu biru** pada kamera menyala
-           - Cek preview video di aplikasi meeting
-        """)
-        
-        st.markdown("---")
-        st.markdown("**Ilustrasi:**")
-        
-        # Gambar di bawah dengan ukuran sedang
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([3, 2])
         
         with col1:
-            img = load_image("assets/kandao_power_button.png")
-            if img:
-                st.image(img, caption="Tombol Power Kamera Kandao", width=300)
+            st.markdown("""
+            **Langkah-langkah:**
+            
+            1. **Aktifkan kamera Kandao**
+               - Tekan dan tahan tombol **ON/OFF** pada kamera
+               - Tunggu hingga lampu indikator menyala
+            
+            2. **Hubungkan ke laptop**
+               - Gunakan kabel **USB OUT** yang tersedia
+               - Sambungkan ke port USB laptop Anda
+            
+            3. **Buka aplikasi meeting**
+               - Jalankan **Zoom**, **Microsoft Teams**, atau aplikasi meeting lainnya
+            
+            4. **Pilih kamera di pengaturan**
+               - Masuk ke Settings > Video/Camera
+               - Pilih **Kandao Meeting Pro** sebagai kamera
+            
+            5. **Verifikasi koneksi**
+               - Pastikan **lampu biru** pada kamera menyala
+               - Cek preview video di aplikasi meeting
+            """)
         
         with col2:
+            img = load_image("assets/kandao_power_button.png")
+            if img:
+                st.image(img, caption="Tombol Power Kamera Kandao", use_container_width=True)
+            
+            st.markdown("")
+            
             img = load_image("assets/Picture15.png")
             if img:
-                st.image(img, caption="Koneksi Kamera ke Laptop", width=300)
+                st.image(img, caption="Koneksi Kamera ke Laptop", use_container_width=True)
     
     st.divider()
     
@@ -719,35 +379,33 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 B. Koneksi ke Proyektor")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
+        col1, col2 = st.columns([3, 2])
         
-        st.markdown("""
-        **Langkah-langkah:**
+        with col1:
+            st.markdown("""
+            **Langkah-langkah:**
+            
+            1. **Hubungkan kabel HDMI**
+               - Sambungkan kamera ke layar/monitor melalui kabel **HDMI**
+            
+            2. **Aktifkan kamera**
+               - Nyalakan kamera jika belum aktif
+               - Pastikan proyektor juga sudah menyala
+            
+            3. **Sambungkan ke Wi-Fi**
+               - Akses menu Wi-Fi pada kamera
+               - Pilih jaringan **TU MOBILE**
+               - Masukkan password jika diminta
+            
+            4. **Verifikasi koneksi**
+               - Pastikan **lampu biru** menyala sebagai indikator koneksi aktif
+               - Layar proyektor seharusnya menampilkan output kamera
+            """)
         
-        1. **Hubungkan kabel HDMI**
-           - Sambungkan kamera ke layar/monitor melalui kabel **HDMI**
-        
-        2. **Aktifkan kamera**
-           - Nyalakan kamera jika belum aktif
-           - Pastikan proyektor juga sudah menyala
-        
-        3. **Sambungkan ke Wi-Fi**
-           - Akses menu Wi-Fi pada kamera
-           - Pilih jaringan **TU MOBILE**
-           - Masukkan password jika diminta
-        
-        4. **Verifikasi koneksi**
-           - Pastikan **lampu biru** menyala sebagai indikator koneksi aktif
-           - Layar proyektor seharusnya menampilkan output kamera
-        """)
-        
-        st.markdown("---")
-        st.markdown("**Ilustrasi:**")
-        
-        img = load_image("assets/Picture13.png")
-        if img:
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                st.image(img, caption="Koneksi Kamera ke Proyektor", width=450)
+        with col2:
+            img = load_image("assets/Picture13.png")
+            if img:
+                st.image(img, caption="Koneksi Kamera ke Proyektor", use_container_width=True)
     
     st.divider()
     
@@ -755,6 +413,11 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 C. Flowchart Topologi Penggunaan Kamera Kandao")
     
     with st.expander("📖 Lihat Diagram Topologi", expanded=True):
+        img = load_image("assets/Picture14.png")
+        if img:
+            st.image(img, caption="Topologi Sistem Kamera Kandao", use_container_width=True)
+        
+        st.markdown("")
         
         st.markdown("""
         **Alur Koneksi:**
@@ -781,17 +444,6 @@ elif page_clean == "Panduan Kamera":
            - Mulai presentasi atau video conference
         """)
         
-        st.markdown("---")
-        st.markdown("**Diagram Topologi:**")
-        
-        img = load_image("assets/Picture14.png")
-        if img:
-            # Diagram bisa agak besar karena perlu detail
-            col1, col2, col3 = st.columns([0.5, 3, 0.5])
-            with col2:
-                st.image(img, caption="Topologi Sistem Kamera Kandao", width=700)
-        
-        st.markdown("")
         st.info("💡 **Catatan:** Pastikan semua kabel terpasang dengan benar dan kencang untuk menghindari gangguan koneksi.")
 
 # ============ HALAMAN REMOTE & FITUR ============
