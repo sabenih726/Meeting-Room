@@ -17,8 +17,7 @@ def load_image(path):
         st.error(f"⚠️ Gambar tidak ditemukan: {path}")
         return None
 
-# ============ STYLING CSS ============
-# ============ STYLING CSS ============
+# ============ STYLING CSS ALTERNATIF ============
 st.markdown("""
     <style>
         /* Background */
@@ -48,78 +47,75 @@ st.markdown("""
             margin-top: 10px;
         }
         
-        /* ========== FIX DROPDOWN SELECTBOX ========== */
+        /* ========== DROPDOWN FIX AGRESIF ========== */
         
-        /* Label dropdown */
+        /* Semua teks di selectbox */
+        .stSelectbox * {
+            color: #1a237e !important;
+        }
+        
+        /* Label */
         .stSelectbox label {
             color: #1a237e !important;
-            font-weight: 600;
-            font-size: 16px;
-        }
-        
-        /* Dropdown box utama */
-        div[data-baseweb="select"] > div {
-            background-color: white !important;
-            border: 2px solid #1976D2 !important;
-            border-radius: 10px !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            padding: 8px 12px !important;
-        }
-        
-        /* Teks yang terpilih di dropdown - INI YANG PENTING */
-        div[data-baseweb="select"] > div > div {
-            color: #1a237e !important;
-        }
-        
-        /* Teks di dalam selected value */
-        div[data-baseweb="select"] span {
-            color: #1a237e !important;
-        }
-        
-        /* Hover effect dropdown box */
-        div[data-baseweb="select"] > div:hover {
-            border-color: #1565C0 !important;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
-            transition: all 0.3s ease;
-        }
-        
-        /* Dropdown menu saat dibuka */
-        div[role="listbox"] {
-            border-radius: 8px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            border: 1px solid #e0e0e0 !important;
-            background-color: white !important;
-        }
-        
-        /* Options di dropdown - TEKS HITAM */
-        div[role="option"] {
-            padding: 12px 16px !important;
-            font-size: 15px !important;
-            color: #212121 !important;
-            background-color: white !important;
-        }
-        
-        /* Options saat di-hover */
-        div[role="option"]:hover {
-            background-color: #E3F2FD !important;
-            color: #1565C0 !important;
-        }
-        
-        /* Option yang sedang dipilih */
-        div[role="option"][aria-selected="true"] {
-            background-color: #BBDEFB !important;
-            color: #0D47A1 !important;
             font-weight: 600 !important;
         }
         
-        /* Icon dropdown arrow */
-        div[data-baseweb="select"] svg {
-            fill: #1976D2 !important;
+        /* Container dropdown */
+        [data-baseweb="select"] {
+            background-color: white !important;
         }
         
-        /* ========== END FIX DROPDOWN ========== */
+        /* Inner container */
+        [data-baseweb="select"] > div {
+            background-color: white !important;
+            border: 2px solid #1976D2 !important;
+            border-radius: 10px !important;
+        }
+        
+        /* Value container (teks yang terlihat) */
+        [data-baseweb="select"] [data-baseweb="base-input"] {
+            background-color: white !important;
+        }
+        
+        /* Selected value text */
+        [data-baseweb="select"] [data-baseweb="base-input"] > div {
+            color: #212121 !important;
+        }
+        
+        /* All spans inside */
+        [data-baseweb="select"] span,
+        [data-baseweb="select"] div {
+            color: #212121 !important;
+        }
+        
+        /* Dropdown menu */
+        [role="listbox"] {
+            background-color: white !important;
+            border: 1px solid #1976D2 !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Each option */
+        [role="option"] {
+            color: #212121 !important;
+            background-color: white !important;
+            padding: 10px 16px !important;
+        }
+        
+        /* Option hover */
+        [role="option"]:hover {
+            background-color: #E3F2FD !important;
+            color: #0D47A1 !important;
+        }
+        
+        /* Selected option */
+        [role="option"][aria-selected="true"] {
+            background-color: #BBDEFB !important;
+            color: #0D47A1 !important;
+            font-weight: bold !important;
+        }
+        
+        /* ========== END DROPDOWN FIX ========== */
         
         /* Hide Sidebar */
         [data-testid="stSidebar"] {
