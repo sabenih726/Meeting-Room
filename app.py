@@ -250,6 +250,7 @@ if page_clean == "Beranda":
     st.success("💡 **Tips:** Gunakan menu dropdown di atas untuk navigasi cepat antar panduan!")
 
 # ============ HALAMAN PANDUAN PROYEKTOR ============
+# ============ HALAMAN PANDUAN PROYEKTOR (REVISED) ============
 elif page_clean == "Panduan Proyektor":
     st.title("📺 Panduan Menyambungkan Proyektor")
     
@@ -258,14 +259,21 @@ elif page_clean == "Panduan Proyektor":
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
         st.markdown("""
+        **Langkah-langkah:**
+        
         1. **Pastikan proyektor menyala** (tekan tombol power di remote proyektor)
         2. **Tekan kombinasi tombol** `Windows + K` pada keyboard laptop Anda
         3. **Pilih nama ruang meeting** yang muncul di layar
         """)
         
+        st.markdown("")
+        
         img = load_image("assets/windows_k_shortcut.png")
         if img:
-            st.image(img, caption="Shortcut Windows + K", use_container_width=True)
+            # Gambar di tengah dengan ukuran sedang
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.image(img, caption="Shortcut Windows + K", width=400)
     
     st.divider()
     
@@ -273,49 +281,61 @@ elif page_clean == "Panduan Proyektor":
     st.markdown("### 🔹 B. Menggunakan Kabel HDMI/VGA")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
-        col1, col2 = st.columns([2, 1])
+        
+        # Langkah 1
+        st.markdown("#### **Langkah 1: Sambungkan Kabel**")
+        col1, col2 = st.columns([3, 2])  # Teks lebih besar dari gambar
         
         with col1:
             st.markdown("""
-            **Langkah 1: Sambungkan Kabel**
             - Ambil kabel HDMI atau VGA yang tersedia
             - Sambungkan satu ujung ke proyektor
             - Sambungkan ujung lainnya ke port laptop Anda
+            - Pastikan kabel terpasang dengan kencang
             """)
         
         with col2:
             img = load_image("assets/colokan_hdmi.png")
             if img:
-                st.image(img, caption="Port HDMI", use_container_width=True)
+                st.image(img, caption="Port HDMI", width=250)  # Ukuran kecil
         
-        st.markdown("")
+        st.markdown("---")
         
-        col3, col4 = st.columns([2, 1])
+        # Langkah 2
+        st.markdown("#### **Langkah 2: Pilih Input**")
+        col3, col4 = st.columns([3, 2])
         
         with col3:
             st.markdown("""
-            **Langkah 2: Pilih Input**
             - Gunakan remote proyektor
             - Pilih input HDMI atau VGA sesuai kabel yang digunakan
             - Tunggu beberapa saat hingga layar terdeteksi
+            - Jika tidak muncul, tekan `Windows + P` dan pilih "Duplicate"
             """)
         
         with col4:
             img = load_image("assets/home_screen_hdmi.png")
             if img:
-                st.image(img, caption="Pilih Input HDMI", use_container_width=True)
+                st.image(img, caption="Pilih Input HDMI", width=250)
+        
+        st.markdown("---")
+        
+        # Langkah 3
+        st.markdown("#### **Langkah 3: Verifikasi Koneksi**")
+        st.markdown("""
+        - Jika berhasil, tampilan laptop akan muncul di layar proyektor
+        - Sesuaikan resolusi jika diperlukan melalui `Settings > Display`
+        - Atur mode tampilan: Duplicate (sama) atau Extend (perpanjang)
+        """)
         
         st.markdown("")
         
-        st.markdown("""
-        **Langkah 3: Verifikasi Koneksi**
-        - Jika berhasil, tampilan laptop akan muncul di layar proyektor
-        - Sesuaikan resolusi jika diperlukan melalui `Settings > Display`
-        """)
-        
         img = load_image("assets/Picture11.png")
         if img:
-            st.image(img, caption="Tampilan Proyektor Berhasil Terhubung", use_container_width=True)
+            # Gambar lebih besar untuk screenshot penting
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                st.image(img, caption="Tampilan Proyektor Berhasil Terhubung", width=600)
     
     st.markdown("")
     
@@ -324,11 +344,12 @@ elif page_clean == "Panduan Proyektor":
     
     img = load_image("assets/Picture12.png")
     if img:
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, col3 = st.columns([1.5, 2, 1.5])
         with col2:
-            st.image(img, caption="Tekan tombol Power Off pada remote", use_container_width=True)
+            st.image(img, caption="Tekan tombol Power Off pada remote", width=350)
 
 # ============ HALAMAN PANDUAN KAMERA ============
+# ============ HALAMAN PANDUAN KAMERA (REVISED) ============
 elif page_clean == "Panduan Kamera":
     st.title("📷 Panduan Penggunaan Kamera Kandao Meeting Pro")
     
@@ -336,42 +357,46 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 A. Koneksi ke Laptop")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
-        col1, col2 = st.columns([3, 2])
+        
+        # Teks penjelasan di atas
+        st.markdown("""
+        **Langkah-langkah:**
+        
+        1. **Aktifkan kamera Kandao**
+           - Tekan dan tahan tombol **ON/OFF** pada kamera
+           - Tunggu hingga lampu indikator menyala
+        
+        2. **Hubungkan ke laptop**
+           - Gunakan kabel **USB OUT** yang tersedia
+           - Sambungkan ke port USB laptop Anda
+        
+        3. **Buka aplikasi meeting**
+           - Jalankan **Zoom**, **Microsoft Teams**, atau aplikasi meeting lainnya
+        
+        4. **Pilih kamera di pengaturan**
+           - Masuk ke Settings > Video/Camera
+           - Pilih **Kandao Meeting Pro** sebagai kamera
+        
+        5. **Verifikasi koneksi**
+           - Pastikan **lampu biru** pada kamera menyala
+           - Cek preview video di aplikasi meeting
+        """)
+        
+        st.markdown("---")
+        st.markdown("**Ilustrasi:**")
+        
+        # Gambar di bawah dengan ukuran sedang
+        col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("""
-            **Langkah-langkah:**
-            
-            1. **Aktifkan kamera Kandao**
-               - Tekan dan tahan tombol **ON/OFF** pada kamera
-               - Tunggu hingga lampu indikator menyala
-            
-            2. **Hubungkan ke laptop**
-               - Gunakan kabel **USB OUT** yang tersedia
-               - Sambungkan ke port USB laptop Anda
-            
-            3. **Buka aplikasi meeting**
-               - Jalankan **Zoom**, **Microsoft Teams**, atau aplikasi meeting lainnya
-            
-            4. **Pilih kamera di pengaturan**
-               - Masuk ke Settings > Video/Camera
-               - Pilih **Kandao Meeting Pro** sebagai kamera
-            
-            5. **Verifikasi koneksi**
-               - Pastikan **lampu biru** pada kamera menyala
-               - Cek preview video di aplikasi meeting
-            """)
-        
-        with col2:
             img = load_image("assets/kandao_power_button.png")
             if img:
-                st.image(img, caption="Tombol Power Kamera Kandao", use_container_width=True)
-            
-            st.markdown("")
-            
+                st.image(img, caption="Tombol Power Kamera Kandao", width=300)
+        
+        with col2:
             img = load_image("assets/Picture15.png")
             if img:
-                st.image(img, caption="Koneksi Kamera ke Laptop", use_container_width=True)
+                st.image(img, caption="Koneksi Kamera ke Laptop", width=300)
     
     st.divider()
     
@@ -379,33 +404,35 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 B. Koneksi ke Proyektor")
     
     with st.expander("📖 Lihat Langkah-langkah", expanded=True):
-        col1, col2 = st.columns([3, 2])
         
-        with col1:
-            st.markdown("""
-            **Langkah-langkah:**
-            
-            1. **Hubungkan kabel HDMI**
-               - Sambungkan kamera ke layar/monitor melalui kabel **HDMI**
-            
-            2. **Aktifkan kamera**
-               - Nyalakan kamera jika belum aktif
-               - Pastikan proyektor juga sudah menyala
-            
-            3. **Sambungkan ke Wi-Fi**
-               - Akses menu Wi-Fi pada kamera
-               - Pilih jaringan **TU MOBILE**
-               - Masukkan password jika diminta
-            
-            4. **Verifikasi koneksi**
-               - Pastikan **lampu biru** menyala sebagai indikator koneksi aktif
-               - Layar proyektor seharusnya menampilkan output kamera
-            """)
+        st.markdown("""
+        **Langkah-langkah:**
         
-        with col2:
-            img = load_image("assets/Picture13.png")
-            if img:
-                st.image(img, caption="Koneksi Kamera ke Proyektor", use_container_width=True)
+        1. **Hubungkan kabel HDMI**
+           - Sambungkan kamera ke layar/monitor melalui kabel **HDMI**
+        
+        2. **Aktifkan kamera**
+           - Nyalakan kamera jika belum aktif
+           - Pastikan proyektor juga sudah menyala
+        
+        3. **Sambungkan ke Wi-Fi**
+           - Akses menu Wi-Fi pada kamera
+           - Pilih jaringan **TU MOBILE**
+           - Masukkan password jika diminta
+        
+        4. **Verifikasi koneksi**
+           - Pastikan **lampu biru** menyala sebagai indikator koneksi aktif
+           - Layar proyektor seharusnya menampilkan output kamera
+        """)
+        
+        st.markdown("---")
+        st.markdown("**Ilustrasi:**")
+        
+        img = load_image("assets/Picture13.png")
+        if img:
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.image(img, caption="Koneksi Kamera ke Proyektor", width=450)
     
     st.divider()
     
@@ -413,11 +440,6 @@ elif page_clean == "Panduan Kamera":
     st.markdown("### 🔹 C. Flowchart Topologi Penggunaan Kamera Kandao")
     
     with st.expander("📖 Lihat Diagram Topologi", expanded=True):
-        img = load_image("assets/Picture14.png")
-        if img:
-            st.image(img, caption="Topologi Sistem Kamera Kandao", use_container_width=True)
-        
-        st.markdown("")
         
         st.markdown("""
         **Alur Koneksi:**
@@ -444,6 +466,17 @@ elif page_clean == "Panduan Kamera":
            - Mulai presentasi atau video conference
         """)
         
+        st.markdown("---")
+        st.markdown("**Diagram Topologi:**")
+        
+        img = load_image("assets/Picture14.png")
+        if img:
+            # Diagram bisa agak besar karena perlu detail
+            col1, col2, col3 = st.columns([0.5, 3, 0.5])
+            with col2:
+                st.image(img, caption="Topologi Sistem Kamera Kandao", width=700)
+        
+        st.markdown("")
         st.info("💡 **Catatan:** Pastikan semua kabel terpasang dengan benar dan kencang untuk menghindari gangguan koneksi.")
 
 # ============ HALAMAN REMOTE & FITUR ============
