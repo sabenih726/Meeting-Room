@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Pengguna - Proyektor & Kamera Rapat</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variabel Warna */
+        :root {
+            --primary: #1976D2;
+            --primary-dark: #0D47A1;
+            --secondary: #FFA726;
+            --success: #66BB6A;
+            --warning: #FFA726;
+            --error: #EF5350;
+            --bg-light: #F5F7FA;
+            --bg-white: #FFFFFF;
+            --text-dark: #1a237e;
+            --text-light: #424242;
+            --text-muted: #757575;
+            --border: #E0E0E0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Mode Gelap */
+        [data-theme="dark"] {
+            --bg-light: #1a1a2e;
+            --bg-white: #16213e;
+            --text-dark: #64B5F6;
+            --text-light: #E0E0E0;
+            --text-muted: #9E9E9E;
+            --border: #424242;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --glass-bg: rgba(30, 30, 50, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gaya Dasar Body */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header yang Diperbaiki */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding-top: 1.5rem;
+            padding-bottom: 1rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .title-section h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .title-section p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
+        }
+
+        .search-box {
+            position: relative;
+            width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            border: 1px solid transparent;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        /* Navigasi yang Diperbaiki */
+        .nav-container {
+            max-width: 1200px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            padding: 0.5rem;
+            border-radius: 14px;
+            box-shadow: 0 8px 32px var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        .nav-tabs::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .nav-tab {
+            flex-shrink: 0;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            background: rgba(25, 118, 210, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+        }
+
+        /* Konten Utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Kartu */
+        .card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .feature-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li {
+            padding: 0.3rem 0;
+            color: var(--text-light);
+        }
+
+        .feature-card li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-bottom: 1rem;
+        }
+        .accordion:last-child {
+            margin-bottom: 0;
+        }
+
+        .accordion-header {
+            background: var(--bg-white);
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .accordion-header:hover {
+            background: rgba(25, 118, 210, 0.05);
+            border-color: var(--primary);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--bg-white);
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .accordion-header.active + .accordion-content {
+             max-height: 2000px;
+             border: 2px solid var(--primary);
+             border-top: none;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+            counter-increment: step;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step:before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            padding-top: 0.2rem;
+        }
+
+        .alert-info { background: #E3F2FD; border-left: 4px solid #2196F3; color: #0D47A1; }
+        .alert-success { background: #E8F5E9; border-left: 4px solid #4CAF50; color: #2E7D32; }
+        .alert-warning { background: #FFF3E0; border-left: 4px solid #FF9800; color: #E65100; }
+        .alert-error { background: #FFEBEE; border-left: 4px solid #F44336; color: #C62828; }
+
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-white);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+        
+        /* GAYA GAMBAR BARU */
+        .image-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .guide-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .header-main-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .title-section h1 {
+                font-size: 1.4rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .nav-tabs, .footer, .theme-toggle {
+                display: none;
+            }
+
+            .page {
+                display: block !important;
+                page-break-after: always;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header dan Navigasi yang Disatukan -->
+    <header class="header">
+        <div class="header-main-content">
+            <div class="logo-section">
+                <div class="logo">🎥</div>
+                <div class="title-section">
+                    <h1>Panduan Pengguna Proyektor & Kamera Rapat</h1>
+                    <p>Panduan lengkap untuk proyektor dan kamera Kandao Meeting Pro</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Cari troubleshooting...">
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showPage('home')">🏠 Beranda</button>
+                <button class="nav-tab" onclick="showPage('projector')">📺 Proyektor</button>
+                <button class="nav-tab" onclick="showPage('camera')">📷 Kamera</button>
+                <button class="nav-tab" onclick="showPage('remote')">🎛️ Remote & Fitur</button>
+                <button class="nav-tab" onclick="showPage('faq')">❓ FAQ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="container">
+        <!-- Halaman Beranda -->
+        <div id="home" class="page active">
+           <!-- Konten Beranda tetap sama -->
+            <div class="alert alert-info">
+                <span class="alert-icon">📌</span>
+                <div>
+                    <strong>Selamat Datang!</strong><br>
+                    Pilih panduan dari menu di atas untuk memulai. Gunakan ikon 🌙/☀️ untuk mengubah tema.
+                </div>
+            </div>
+
+            <h2 style="color: var(--text-dark); margin: 2rem 0;">🚀 Akses Cepat</h2>
+            
+            <div class="grid">
+                <div class="feature-card" onclick="showPage('projector', this)">
+                    <h3>📺 Panduan Proyektor</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Pelajari cara menyambungkan laptop ke proyektor:</p>
+                    <ul>
+                        <li>Shortcut Windows + K</li>
+                        <li>Kabel HDMI/VGA</li>
+                        <li>Troubleshooting koneksi</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" onclick="showPage('camera', this)">
+                    <h3>📷 Panduan Kamera</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Setup kamera Kandao Meeting Pro:</p>
+                    <ul>
+                        <li>Koneksi ke laptop</li>
+                        <li>Koneksi ke proyektor</li>
+                        <li>Topologi sistem</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" onclick="showPage('remote', this)">
+                    <h3>🎛️ Remote & Fitur</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Penggunaan remote dan fitur:</p>
+                    <ul>
+                        <li>Fungsi tombol remote</li>
+                        <li>Audio 360° & 4K Video</li>
+                        <li>Smart tracking</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" onclick="showPage('faq', this)">
+                    <h3>❓ FAQ & Troubleshooting</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Solusi masalah umum:</p>
+                    <ul>
+                        <li>Proyektor tidak terdeteksi</li>
+                        <li>Kamera tidak muncul</li>
+                        <li>Kontak bantuan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-success" style="margin-top: 2rem;">
+                <span class="alert-icon">💡</span>
+                <div>
+                    <strong>Tips:</strong> Gunakan fitur pencarian di header untuk menemukan solusi cepat! Anda juga bisa menggunakan shortcut <strong>Ctrl + K</strong> untuk langsung ke kolom pencarian.
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman Proyektor (Dengan Contoh Gambar) -->
+        <div id="projector" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📺</div>
+                    <h2 class="card-title">Panduan Menyambungkan Proyektor</h2>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>A. Menggunakan Shortcut Keyboard (Nirkabel)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Pastikan Proyektor Menyala</h4>
+                                    <p>Tekan tombol power di remote proyektor dan tunggu hingga lampu indikator menyala stabil.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Tekan Kombinasi Tombol</h4>
+                                    <p>Pada keyboard laptop Anda, tekan tombol <strong>Windows + K</strong> secara bersamaan. Ini akan membuka panel "Connect".</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Pilih Proyektor</h4>
+                                    <p>Pilih nama proyektor ruang meeting dari daftar perangkat yang muncul di panel sebelah kanan layar.</p>
+                                    
+                                    <!-- CONTOH PENEMPATAN GAMBAR -->
+                                    <div class="image-container">
+                                        <!-- GANTI 'src' DENGAN URL GAMBAR ANDA -->
+                                        <img src="https://postimg.cc/30M5vqPd" 
+                                             alt="Panel Connect Windows untuk memilih proyektor nirkabel" 
+                                             class="guide-image">
+                                        <p class="image-caption">Contoh tampilan panel "Connect" di Windows.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>B. Menggunakan Kabel HDMI/VGA</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Sambungkan Kabel</h4>
+                                    <ul>
+                                        <li>Ambil kabel HDMI atau VGA yang tersedia di ruang meeting.</li>
+                                        <li>Sambungkan satu ujung ke port yang sesuai di proyektor.</li>
+                                        <li>Sambungkan ujung lainnya ke port di laptop Anda.</li>
+                                        <li>Pastikan kedua ujung kabel terpasang dengan kencang.</li>
+                                    </ul>
+                                </div>
+                                <div class="step">
+                                    <h4>Pilih Sumber Input</h4>
+                                    <ul>
+                                        <li>Gunakan remote proyektor, cari tombol "Input" atau "Source".</li>
+                                        <li>Pilih input yang sesuai (HDMI atau VGA).</li>
+                                        <li>Jika tidak ada tampilan, tekan <strong>Windows + P</strong> di laptop dan pilih "Duplicate".</li>
+                                    </ul>
+                                </div>
+                                <div class="step">
+                                    <h4>Verifikasi Koneksi</h4>
+                                    <p>Tampilan layar laptop Anda seharusnya sekarang muncul di layar proyektor.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning" style="margin-top:2rem">
+                    <span class="alert-icon">🔌</span>
+                    <div>
+                        <strong>Penting:</strong> Jangan lupa matikan proyektor setelah selesai digunakan untuk menghemat energi dan memperpanjang umur lampu proyektor!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman lainnya (Kamera, Remote, FAQ) tetap sama -->
+        <div id="camera" class="page">
+            <!-- Isi halaman kamera -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📷</div>
+                    <h2 class="card-title">Panduan Kamera Kandao Meeting Pro</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>A. Koneksi ke Laptop (Mode Webcam)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Nyalakan Kamera Kandao</h4>
+                                    <p>Tekan dan tahan tombol <strong>ON/OFF</strong> pada kamera hingga lampu indikator menyala.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Hubungkan ke Laptop</h4>
+                                    <p>Gunakan kabel <strong>USB-C ke USB-A</strong> yang disediakan. Sambungkan ujung USB-C ke port "USB OUT" di kamera dan ujung USB-A ke port USB di laptop.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Buka Aplikasi Meeting</h4>
+                                    <p>Jalankan aplikasi seperti Zoom, Microsoft Teams, atau Google Meet.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Pilih Perangkat di Pengaturan</h4>
+                                    <p>Di pengaturan aplikasi meeting, pilih <strong>"Kandao Meeting Pro"</strong> sebagai sumber Kamera, Mikrofon, dan Speaker.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>B. Koneksi ke Proyektor (Mode Mandiri)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Hubungkan HDMI</h4>
+                                    <p>Sambungkan kamera ke proyektor atau monitor menggunakan kabel HDMI dari port "HDMI OUT" kamera.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Nyalakan Perangkat</h4>
+                                    <p>Nyalakan kamera Kandao dan pastikan proyektor juga sudah menyala dengan input HDMI yang benar.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Sambungkan ke Wi-Fi</h4>
+                                    <ul>
+                                        <li>Gunakan remote untuk menavigasi ke menu pengaturan pada layar.</li>
+                                        <li>Pilih Wi-Fi dan sambungkan ke jaringan yang tersedia (misal: <strong>TU MOBILE</strong>).</li>
+                                    </ul>
+                                </div>
+                                <div class="step">
+                                    <h4>Mulai Meeting</h4>
+                                    <p>Anda dapat bergabung atau memulai meeting langsung dari antarmuka kamera Kandao di proyektor.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>C. Topologi Sistem Kandao</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4 style="color: var(--text-dark); margin-bottom: 1rem;">Alur Koneksi Umum:</h4>
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Sumber Listrik</h4>
+                                    <p>Hubungkan adaptor daya USB-C ke kamera untuk memastikan daya stabil.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Output Tampilan</h4>
+                                    <p>Sambungkan port HDMI OUT dari kamera ke port HDMI IN di Proyektor/TV.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Koneksi Data</h4>
+                                    <p>Sambungkan port USB OUT dari kamera ke port USB di Laptop (untuk mode webcam).</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Koneksi Internet</h4>
+                                    <p>Hubungkan ke WiFi atau gunakan port LAN untuk koneksi internet kabel yang lebih stabil.</p>
+                                </div>
+                            </div>
+                           <div class="image-container">
+                                <img src="https://placehold.co/800x250/e3f2fd/1a237e?text=Diagram+Topologi+Sistem" 
+                                     alt="Diagram alur koneksi sistem Kandao" 
+                                     class="guide-image">
+                                <p class="image-caption">Contoh diagram koneksi perangkat.</p>
+                            </div>
+                            <div class="alert alert-info" style="margin-top: 1.5rem;">
+                                <span class="alert-icon">💡</span>
+                                <div>
+                                    <strong>Catatan:</strong> Untuk pengalaman terbaik dalam mode mandiri, disarankan menggunakan koneksi internet kabel (LAN) jika tersedia.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="remote" class="page">
+             <!-- Isi halaman remote -->
+             <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎛️</div>
+                    <h2 class="card-title">Remote Control & Fitur Unggulan</h2>
+                </div>
+                <p>Kuasai fungsi remote dan manfaatkan fitur-fitur canggih dari kamera Kandao Meeting Pro.</p>
+
+                <div class="accordion" style="margin-top:1.5rem">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Fungsi Tombol Remote Control</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                             <div class="grid">
+                                <div class="feature-card">
+                                    <h3>⚡ Tombol Daya (Power)</h3>
+                                    <ul>
+                                        <li>Nyalakan/matikan kamera</li>
+                                        <li>Tekan dan tahan 2-3 detik</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🖱️ Mode Mouse</h3>
+                                    <ul>
+                                        <li>Aktifkan navigasi kursor</li>
+                                        <li>Gunakan directional pad</li>
+                                        <li>Tekan OK untuk klik</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🔊 Volume +/-</h3>
+                                    <ul>
+                                        <li>Atur volume speaker</li>
+                                        <li>Volume+ untuk menaikkan</li>
+                                        <li>Volume- untuk menurunkan</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🎙️ Tombol Mikrofon</h3>
+                                    <ul>
+                                        <li>Mute/unmute audio</li>
+                                        <li>LED berubah saat mute</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🎯 Directional Pad</h3>
+                                    <ul>
+                                        <li>Navigasi menu interface</li>
+                                        <li>Kontrol pointer mouse</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>✅ Tombol OK/Enter</h3>
+                                    <ul>
+                                        <li>Konfirmasi pilihan</li>
+                                        <li>Klik saat mode mouse</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="alert alert-warning">
+                                <span class="alert-icon">⚠️</span>
+                                <div>
+                                    <strong>Perhatian:</strong> Arahkan remote ke sensor IR pada kamera (jarak maksimal ~5 meter) dan pastikan tidak ada penghalang.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Fitur Unggulan Kamera Kandao</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="grid">
+                                <div class="feature-card" style="border-left-color: var(--primary);">
+                                    <h3>🎙️ Audio Jernih 360°</h3>
+                                    <ul>
+                                        <li>8 Mikrofon Array</li>
+                                        <li>Noise & Echo Cancellation</li>
+                                        <li>Jangkauan 5.5 meter</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card" style="border-left-color: var(--success);">
+                                    <h3>🎥 Video Cerdas 4K</h3>
+                                    <ul>
+                                        <li>Tampilan Panorama 360°</li>
+                                        <li>Resolusi 4K Ultra HD</li>
+                                        <li>AI Smart Tracking & Framing</li>
+                                    </ul>
+                                </div>
+                                <div class="feature-card" style="border-left-color: var(--secondary);">
+                                    <h3>⚡ Mudah & Fleksibel</h3>
+                                    <ul>
+                                        <li>Plug & Play via USB</li>
+                                        <li>Mode Mandiri (Android OS)</li>
+                                        <li>Kompatibel Multi-platform</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="alert alert-success" style="margin-top: 2rem;">
+                                <span class="alert-icon">🌟</span>
+                                <div>
+                                    <strong>Pro Tip:</strong> Aktifkan mode "Speaker-tracking" untuk presentasi yang lebih dinamis, di mana kamera akan otomatis fokus pada orang yang sedang berbicara.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="faq" class="page">
+            <!-- Isi halaman FAQ -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">❓</div>
+                    <h2 class="card-title">FAQ & Troubleshooting</h2>
+                </div>
+                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">🔧 Solusi Masalah Umum</h3>
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>❌ Proyektor tidak menampilkan gambar dari laptop?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Cek Koneksi Fisik</h4>
+                                    <p>Pastikan kabel (HDMI/VGA) terpasang kencang di laptop dan proyektor.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Cek Sumber Input</h4>
+                                    <p>Gunakan remote proyektor untuk memastikan "Source" atau "Input" sudah benar (HDMI/VGA).</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Cek Pengaturan Tampilan</h4>
+                                    <p>Tekan <strong>Windows + P</strong> pada keyboard dan pilih mode "Duplicate". Untuk Mac, periksa "System Settings" > "Displays".</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>❌ Kamera tidak terdeteksi di Zoom/Teams?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                             <div class="steps">
+                                <div class="step">
+                                    <h4>Koneksi USB Bermasalah</h4>
+                                    <p>Pastikan kabel USB terpasang dengan baik. Coba gunakan port USB lain di laptop (utamakan port USB 3.0 berwarna biru).</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Perangkat Belum Dipilih</h4>
+                                    <p>Di pengaturan Audio & Video aplikasi meeting, pastikan "Kandao Meeting Pro" terpilih sebagai kamera, mikrofon, dan speaker.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Izin Akses Kamera</h4>
+                                    <p>Di Pengaturan Windows/Mac, pastikan aplikasi (Zoom/Teams) diizinkan untuk mengakses kamera.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>❌ Tidak bisa connect ke WiFi?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <h4>Password Salah</h4>
+                                    <p>Verifikasi password WiFi dengan tim IT, perhatikan huruf besar/kecil dan karakter spesial.</p>
+                                </div>
+                                <div class="step">
+                                    <h4>Sinyal Lemah</h4>
+                                    <p>Pastikan kamera tidak terlalu jauh dari sumber WiFi (access point).</p>
+                                </div>
+                                <div class="step">
+                                    <h4>MAC Address Filtering</h4>
+                                    <p>Hubungi tim IT untuk mendaftarkan MAC Address kamera ke dalam jaringan WiFi jika diperlukan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">💡 Tips & Praktik Terbaik</h3>
+                <div class="grid">
+                    <div class="feature-card" style="border-left-color: #4CAF50;">
+                        <h3>✅ Sebelum Meeting</h3>
+                        <ul>
+                            <li>Datang 10-15 menit lebih awal.</li>
+                            <li>Nyalakan dan uji semua perangkat.</li>
+                            <li>Pastikan koneksi internet stabil.</li>
+                            <li>Siapkan materi presentasi Anda.</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card" style="border-left-color: #FF9800;">
+                        <h3>✅ Setelah Meeting</h3>
+                        <ul>
+                            <li>Matikan proyektor & kamera.</li>
+                            <li>Cabut kabel dengan hati-hati.</li>
+                            <li>Rapikan kembali remote dan kabel.</li>
+                            <li>Laporkan jika ada kendala/kerusakan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">📞 Butuh Bantuan Lanjutan?</h3>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">🏢</div>
+                        <h4>Tim Fasilitas</h4>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Masalah hardware: proyektor, kabel, remote, layar.</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💻</div>
+                        <h4>Tim IT Support</h4>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Masalah software: driver, aplikasi meeting, jaringan/WiFi.</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <h4>Helpdesk</h4>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Untuk semua kendala darurat dan pelaporan tiket.</p>
+                    </div>
+                </div>
+                 <div class="alert alert-success">
+                    <span class="alert-icon">✅</span>
+                    <div>
+                        <strong>Saat menghubungi bantuan, siapkan info ini:</strong> Nama ruang meeting, jenis masalah, dan screenshot error (jika ada). Ini akan mempercepat proses penyelesaian masalah.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>© 2024 Trakindo</strong> - Panduan Pengguna Proyektor & Kamera Rapat</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Terakhir diperbarui: Januari 2024 | Versi 1.2</p>
+    </footer>
+
+    <script>
+        let activeTab = 'home';
+        const searchInput = document.getElementById('searchInput');
+
+        // Navigasi Halaman
+        function showPage(pageId, element) {
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Tampilkan halaman yang dipilih
+            document.getElementById(pageId).classList.add('active');
+            
+            // Perbarui tab navigasi
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if(tab.getAttribute('onclick').includes(`'${pageId}'`)) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Gulir ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            activeTab = pageId;
+        }
+
+        // Toggle Accordion
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Tutup semua accordion di dalam card yang sama untuk menghindari banyak yang terbuka
+            const parentCard = header.closest('.card');
+            if (parentCard) {
+                 parentCard.querySelectorAll('.accordion-header').forEach(h => {
+                    if (h !== header) h.classList.remove('active');
+                });
+            }
+            
+            // Buka atau tutup accordion yang diklik
+            header.classList.toggle('active');
+        }
+
+        // Toggle Tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            document.querySelector('.theme-toggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Muat tema yang tersimpan
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelector('.theme-toggle').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Fungsionalitas Pencarian
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const faqPage = document.getElementById('faq');
+            
+            if (searchTerm === '') {
+                 faqPage.querySelectorAll('.accordion').forEach(acc => {
+                    acc.style.display = 'block';
+                 });
+                 if (activeTab !== 'faq') showPage(activeTab);
+                 return;
+            }
+
+            let found = false;
+            faqPage.querySelectorAll('.accordion').forEach(accordion => {
+                const textContent = accordion.textContent.toLowerCase();
+                if (textContent.includes(searchTerm)) {
+                    accordion.style.display = 'block';
+                    found = true;
+                } else {
+                    accordion.style.display = 'none';
+                }
+            });
+
+            if (found && activeTab !== 'faq') {
+                showPage('faq');
+            }
+        });
+
+        // Shortcut keyboard untuk pencarian
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
