@@ -5,28 +5,22 @@ name: Deploy to Firebase Hosting on push
 on:
   push:
     branches:
-      - main # GANTI JIKA NAMA BRANCH UTAMA ANDA BUKAN 'main' (misal: 'master')
+      - main # Ganti jika nama branch utama Anda bukan 'main' (misal: 'master')
 
 jobs:
-  build_and_deploy:
+  deploy: # Nama job bisa disederhanakan menjadi 'deploy'
     runs-on: ubuntu-latest # Menggunakan server Linux
     steps:
       # Langkah 1: Mengunduh kode dari repositori Anda
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Langkah 2 (OPSIONAL): Build proyek jika diperlukan (React, Vue, dll)
-      # Jika proyek Anda HANYA HTML/CSS statis, Anda bisa menghapus langkah ini.
-      - name: Install Dependencies and Build Project
-        run: |
-          npm ci
-          npm run build
-
-      # Langkah 3: Deploy ke Firebase Hosting
+      # Langkah 2: Deploy ke Firebase Hosting
+      # Langkah build sudah dihilangkan karena tidak diperlukan
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}'
           channelId: live
-          projectId: 'trakindomeetingroom' # <-- Project ID Anda sudah dimasukkan
+          projectId: 'trakindomeetingroom'
