@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Pengguna - Proyektor & Kamera Rapat</title>
+    <title>Projector & Conference Camera User Guide</title>
     <style>
         /* CSS Reset */
         * {
@@ -12,36 +12,37 @@
             box-sizing: border-box;
         }
 
-        /* Variabel Warna (Tema Trakindo) */
+        /* Variabel Warna - TRAKINDO CAT THEME */
         :root {
-            --primary: #F4A300; /* Trakindo Yellow */
-            --primary-dark: #000000; /* Trakindo Black */
+            --primary: #F4A300;              /* Kuning-oranye Trakindo */
+            --primary-dark: #C07F00;         /* Kuning lebih gelap */
+            --primary-black: #000000;        /* Hitam CAT */
             --secondary: #F4A300;
-            --success: #4CAF50;
-            --warning: #FB8C00;
-            --error: #E53935;
-            --bg-light: #F5F7FA;
+            --success: #66BB6A;
+            --warning: #F4A300;
+            --error: #EF5350;
+            --bg-light: #FFF8E7;            /* Background krem lembut */
             --bg-white: #FFFFFF;
-            --text-dark: #000000; /* Black for titles */
-            --text-light: #212121; /* Dark gray for body */
-            --text-muted: #757575;
+            --text-dark: #000000;           /* Teks hitam Trakindo */
+            --text-light: #333333;
+            --text-muted: #666666;
             --border: #E0E0E0;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow: rgba(244, 163, 0, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(244, 163, 0, 0.3);
         }
 
-        /* Mode Gelap (Tema Trakindo) */
+        /* Mode Gelap */
         [data-theme="dark"] {
-            --bg-light: #121212;
-            --bg-white: #1E1E1E;
-            --text-dark: #F4A300; /* Trakindo Yellow for titles */
+            --bg-light: #1a1a1a;
+            --bg-white: #2a2a2a;
+            --text-dark: #F4A300;
             --text-light: #E0E0E0;
             --text-muted: #9E9E9E;
             --border: #424242;
-            --shadow: rgba(0, 0, 0, 0.3);
-            --glass-bg: rgba(30, 30, 30, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: rgba(244, 163, 0, 0.3);
+            --glass-bg: rgba(42, 42, 42, 0.9);
+            --glass-border: rgba(244, 163, 0, 0.2);
         }
 
         /* Gaya Dasar Body */
@@ -53,10 +54,10 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Header yang Diperbaiki */
+        /* Header yang Diperbaiki - TRAKINDO STYLE */
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            color: var(--primary-black);
             padding-top: 1.5rem;
             padding-bottom: 1rem;
             box-shadow: 0 4px 20px var(--shadow);
@@ -91,20 +92,22 @@
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             flex-shrink: 0;
-            padding: 5px;
         }
 
         .title-section h1 {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.2rem;
+            color: var(--primary-black);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
         }
 
         .title-section p {
             font-size: 0.9rem;
-            opacity: 0.9;
+            opacity: 0.95;
+            color: var(--primary-black);
         }
 
         .header-controls {
@@ -114,9 +117,9 @@
         }
 
         .theme-toggle {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
+            background: var(--primary-black);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--primary);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -130,8 +133,9 @@
         }
 
         .theme-toggle:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.8);
             transform: rotate(180deg);
+            border-color: white;
         }
 
         .search-box {
@@ -142,22 +146,23 @@
         .search-box input {
             width: 100%;
             padding: 0.6rem 1rem 0.6rem 2.5rem;
-            border: 1px solid transparent;
+            border: 2px solid var(--primary-black);
             border-radius: 25px;
-            background: rgba(255,255,255,0.2);
-            color: white;
+            background: rgba(255,255,255,0.95);
+            color: var(--primary-black);
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
         .search-box input::placeholder {
-            color: rgba(255,255,255,0.7);
+            color: rgba(0,0,0,0.5);
         }
 
         .search-box input:focus {
             outline: none;
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.4);
+            background: white;
+            border-color: var(--primary-black);
+            box-shadow: 0 0 0 3px rgba(244,163,0,0.2);
         }
 
         .search-icon {
@@ -165,10 +170,10 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
-        /* Navigasi yang Diperbaiki */
+        /* Navigasi yang Diperbaiki - TRAKINDO STYLE */
         .nav-container {
             max-width: 1200px;
             margin: 1.5rem auto 0;
@@ -184,12 +189,12 @@
             box-shadow: 0 8px 32px var(--shadow);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 2px solid var(--primary);
             overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
         .nav-tabs::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
         }
 
         .nav-tab {
@@ -201,20 +206,21 @@
             border-radius: 10px;
             cursor: pointer;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             white-space: nowrap;
         }
 
         .nav-tab:hover {
-            background: rgba(244, 163, 0, 0.1);
-            color: var(--primary);
+            background: rgba(244, 163, 0, 0.15);
+            color: var(--primary-dark);
         }
 
         .nav-tab.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(244, 163, 0, 0.3);
+            color: var(--primary-black);
+            box-shadow: 0 4px 12px rgba(244, 163, 0, 0.4);
+            font-weight: 700;
         }
 
         /* Konten Utama */
@@ -251,13 +257,14 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px var(--shadow);
-            border: 1px solid var(--border);
+            border: 2px solid var(--primary);
             transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px var(--shadow);
+            border-color: var(--primary-dark);
         }
 
         .card-header {
@@ -266,7 +273,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 3px solid var(--primary);
         }
 
         .card-icon {
@@ -278,8 +285,9 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: white;
+            color: var(--primary-black);
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(244,163,0,0.3);
         }
 
         .card-title {
@@ -299,7 +307,8 @@
             background: var(--bg-white);
             border-radius: 12px;
             padding: 1.5rem;
-            border-left: 4px solid var(--primary);
+            border-left: 5px solid var(--primary);
+            border: 2px solid var(--primary);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -307,6 +316,8 @@
         .feature-card:hover {
             transform: translateX(8px);
             box-shadow: 0 4px 20px var(--shadow);
+            border-left-width: 8px;
+            background: linear-gradient(to right, rgba(244,163,0,0.05), white);
         }
 
         .feature-card h3 {
@@ -315,6 +326,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-weight: 700;
         }
 
         .feature-card ul {
@@ -329,9 +341,10 @@
 
         .feature-card li:before {
             content: "✓ ";
-            color: var(--success);
+            color: var(--primary);
             font-weight: bold;
             margin-right: 0.5rem;
+            font-size: 1.2rem;
         }
 
         /* Accordion */
@@ -353,18 +366,19 @@
             font-weight: 600;
             color: var(--text-dark);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid var(--primary);
         }
 
         .accordion-header:hover {
             background: rgba(244, 163, 0, 0.1);
-            border-color: var(--primary);
+            border-color: var(--primary-dark);
         }
 
         .accordion-header.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            color: var(--primary-black);
             border-radius: 12px 12px 0 0;
+            font-weight: 700;
         }
 
         .accordion-icon {
@@ -385,7 +399,7 @@
         }
         
         .accordion-header.active + .accordion-content {
-             max-height: 2000px; /* Cukup besar */
+             max-height: 2000px;
              border: 2px solid var(--primary);
              border-top: none;
         }
@@ -417,20 +431,22 @@
             width: 2rem;
             height: 2rem;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            color: var(--primary-black);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            box-shadow: 0 2px 8px rgba(244,163,0,0.4);
         }
 
         .step h4 {
             color: var(--text-dark);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        /* Alert Boxes */
+        /* Alert Boxes - TRAKINDO STYLE */
         .alert {
             padding: 1rem 1.5rem;
             border-radius: 12px;
@@ -446,10 +462,30 @@
             padding-top: 0.2rem;
         }
 
-        .alert-info { background: #E3F2FD; border-left: 4px solid #2196F3; color: #0D47A1; }
-        .alert-success { background: #E8F5E9; border-left: 4px solid #4CAF50; color: #2E7D32; }
-        .alert-warning { background: #FFF3E0; border-left: 4px solid #FB8C00; color: #E65100; }
-        .alert-error { background: #FFEBEE; border-left: 4px solid #E53935; color: #C62828; }
+        .alert-info { 
+            background: #FFF8E7; 
+            border-left: 5px solid var(--primary); 
+            color: var(--primary-black); 
+            border: 2px solid var(--primary);
+        }
+        .alert-success { 
+            background: #E8F5E9; 
+            border-left: 5px solid #4CAF50; 
+            color: #2E7D32; 
+            border: 2px solid #4CAF50;
+        }
+        .alert-warning { 
+            background: #FFF3E0; 
+            border-left: 5px solid var(--primary-dark); 
+            color: var(--primary-black); 
+            border: 2px solid var(--primary-dark);
+        }
+        .alert-error { 
+            background: #FFEBEE; 
+            border-left: 5px solid #F44336; 
+            color: #C62828; 
+            border: 2px solid #F44336;
+        }
 
         /* Contact Cards */
         .contact-grid {
@@ -466,11 +502,13 @@
             text-align: center;
             box-shadow: 0 4px 12px var(--shadow);
             transition: all 0.3s ease;
+            border: 2px solid var(--primary);
         }
 
         .contact-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 24px var(--shadow);
+            border-color: var(--primary-dark);
         }
 
         .contact-icon {
@@ -483,17 +521,26 @@
             justify-content: center;
             font-size: 1.8rem;
             margin: 0 auto 1rem;
-            color: white;
+            color: var(--primary-black);
+            box-shadow: 0 4px 12px rgba(244,163,0,0.3);
         }
 
-        /* Footer */
+        /* Footer - TRAKINDO STYLE */
         .footer {
-            background: var(--bg-white);
+            background: var(--primary-black);
             padding: 2rem;
             text-align: center;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
+            color: var(--primary);
+            border-top: 4px solid var(--primary);
             margin-top: 4rem;
+        }
+        
+        .footer p {
+            color: #FFFFFF;
+        }
+        
+        .footer strong {
+            color: var(--primary);
         }
         
         /* GAYA GAMBAR & KONTEN */
@@ -505,7 +552,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 12px;
-            border: 1px solid var(--border);
+            border: 3px solid var(--primary);
             box-shadow: 0 4px 12px var(--shadow);
         }
         .image-caption {
@@ -553,11 +600,11 @@
         <div class="header-main-content">
             <div class="logo-section">
                 <div class="logo">
-                    <img src="assets/logo_trakindo.png" alt="Logo Trakindo" style="width: 100%; height: auto;">
+                    <img src="assets/logo_trakindo.png" alt="Logo Trakindo" style="width: 40px; height: auto;">
                 </div>
                 <div class="title-section">
-                    <h1>Panduan Pengguna Proyektor & Kamera Rapat</h1>
-                    <p>Panduan lengkap untuk proyektor dan kamera Kandao Meeting Pro</p>
+                    <h1>Projector & Conference Camera User Guide</h1>
+                    <p>Complete guide to Kandao Meeting Pro projectors and cameras</p>
                 </div>
             </div>
             <div class="header-controls">
@@ -580,28 +627,44 @@
     </header>
 
     <main class="container">
-        <!-- Halaman Beranda -->
+        <!-- Home Page -->
         <div id="home" class="page active">
            <div class="alert alert-info">
                 <span class="alert-icon">📌</span>
                 <div>
-                    <strong>Selamat Datang!</strong><br>
-                    Pilih panduan dari menu di atas untuk memulai. Gunakan ikon 🌙/☀️ untuk mengubah tema.
+                    <strong>Welcome!</strong><br>
+                    Select a guide from the menu above to get started. Use the icons 🌙/☀️ to change the theme.
                 </div>
             </div>
             <h2 style="color: var(--text-dark); margin: 2rem 0;">🚀 Akses Cepat</h2>
             <div class="grid">
                 <div class="feature-card" onclick="showPage('projector', this)">
-                    <h3>📺 Panduan Proyektor</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Pelajari cara menyambungkan laptop ke proyektor.</p>
+                    <h3>📺 Projector Guide</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Learn how to connect a laptop to a projector.</p>
+                    <ul>
+                        <li>Shortcut Windows + K</li>
+                        <li>Cable HDMI/VGA</li>
+                        <li>Troubleshooting connections</li>
+                    </ul>
                 </div>
+                
                 <div class="feature-card" onclick="showPage('camera', this)">
-                    <h3>📷 Panduan Kamera</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Setup kamera Kandao Meeting Pro.</p>
+                    <h3>📷 Camera Guide</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Set up the Kandao Meeting Pro camera.</p>
+                    <ul>
+                        <li>Connection to a laptop</li>
+                        <li>Connection to the projector</li>
+                        <li>System topology</li>
+                    </ul>
                 </div>
                 <div class="feature-card" onclick="showPage('remote', this)">
-                    <h3>🎛️ Remote & Fitur</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Penggunaan remote dan fitur-fiturnya.</p>
+                    <h3>🎛️ Remote & Features</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Use of the remote and its features.</p>
+                    <ul>
+                        <li>Remote button functions</li>
+                        <li>360° Audio & 4K Video</li>
+                        <li>Smart tracking</li>
+                    </ul>
                 </div>
                 <div class="feature-card" onclick="showPage('faq', this)">
                     <h3>❓ FAQ & Troubleshooting</h3>
@@ -611,33 +674,33 @@
             <div class="alert alert-success" style="margin-top: 2rem;">
                 <span class="alert-icon">💡</span>
                 <div>
-                    <strong>Tips:</strong> Gunakan fitur pencarian di header atau shortcut <strong>Ctrl + K</strong> untuk menemukan solusi cepat!
+                    <strong>Tips:</strong> Use the search feature in the header or shortcut <strong>Ctrl + K</strong> to find a quick solution!
                 </div>
             </div>
         </div>
 
-        <!-- Halaman Proyektor -->
+        <!-- Projector Page -->
         <div id="projector" class="page">
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📺</div>
-                    <h2 class="card-title">Panduan Menyambungkan Proyektor</h2>
+                    <h2 class="card-title">Guide to Connecting a Projector</h2>
                 </div>
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>A. Menggunakan Shortcut Keyboard (Nirkabel)</span><span class="accordion-icon">▼</span>
+                        <span>A. Using Keyboard Shortcuts (Wireless)</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            <p>Metode ini adalah cara tercepat untuk terhubung tanpa kabel.</p>
+                            <p>This method is the fastest way to connect wirelessly.</p>
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Tekan Tombol Windows + K</h4>
-                                    <p>Pada keyboard Anda, tekan tombol <strong>Windows + K</strong> untuk membuka panel 'Connect'.</p>
+                                    <h4>Press the Windows key + K</h4>
+                                    <p>On your keyboard, press the <strong>Windows + K</strong> to open the 'Connect' panel.</p>
                                 </div>
                                 <div class="step">
-                                    <h4>Pilih Proyektor</h4>
-                                    <p>Pilih nama proyektor ruang meeting dari daftar yang muncul.</p>
+                                    <h4>Select Projector</h4>
+                                    <p>Select the name of the meeting room projector from the list that appears.</p>
                                     <div class="image-container">
                                         <img src="assets/windows_k_shortcut.png" alt="Panel Connect Windows" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=windows_k_shortcut.png'">
                                     </div>
@@ -648,32 +711,32 @@
                 </div>
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>B. Menggunakan Kabel HDMI/VGA</span><span class="accordion-icon">▼</span>
+                        <span>B. Using an HDMI/VGA Cable</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Sambungkan Kabel</h4>
+                                    <h4>Connect the Cable</h4>
                                     <div class="content-grid">
                                         <div>
-                                            <p>Sambungkan kabel HDMI/VGA dari laptop ke port yang sesuai di proyektor.</p>
+                                            <p>Connect the HDMI/VGA cable from the laptop to the corresponding port on the projector.</p>
                                         </div>
                                         <img src="assets/colokan_hdmi.png" alt="Port HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=colokan_hdmi.png'">
                                     </div>
                                 </div>
                                 <div class="step">
-                                    <h4>Pilih Sumber Input</h4>
+                                    <h4>Select Input Source</h4>
                                     <div class="content-grid">
                                        <div>
-                                            <p>Gunakan remote proyektor untuk memilih sumber input (HDMI/VGA). Jika layar tidak tampil, tekan <strong>Windows + P</strong> dan pilih 'Duplicate'.</p>
+                                            <p>Use the projector remote to select the input source (HDMI/VGA). If the screen does not appear, press <strong>Windows + P</strong> and select 'Duplicate'.</p>
                                        </div>
                                        <img src="assets/home_screen_hdmi.png" alt="Pilih Input HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=home_screen_hdmi.png'">
                                     </div>
                                 </div>
                                 <div class="step">
-                                    <h4>Verifikasi Koneksi</h4>
-                                    <p>Tampilan laptop Anda akan muncul di layar proyektor.</p>
+                                    <h4>Connection Verification</h4>
+                                    <p>Your laptop display will appear on the projector screen.</p>
                                     <div class="image-container">
                                         <img src="assets/Picture11.png" alt="Tampilan proyektor berhasil" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=Picture11.png'">
                                     </div>
@@ -685,7 +748,7 @@
                  <div class="alert alert-warning" style="margin-top:2rem; display:flex; align-items:center; gap: 1rem;">
                     <img src="assets/Picture12.png" alt="Tombol power off remote" style="max-width:150px; border-radius:8px;" onerror="this.onerror=null;this.src='https://placehold.co/150x100/?text=Picture12.png'">
                     <div>
-                        <strong>Penting:</strong> Jangan lupa matikan proyektor setelah selesai digunakan untuk menghemat energi!
+                        <strong>Important:</strong> Don't forget to turn off the projector after use to save energy!
                     </div>
                 </div>
             </div>
@@ -849,12 +912,12 @@
                 <div class="contact-grid">
                     <div class="contact-card">
                         <div class="contact-icon">🏢</div>
-                        <h4>Tim Fasilitas</h4>
+                        <h4>Facility Maintenance</h4>
                         <p style="color: var(--text-muted); margin: 0.5rem 0;">Masalah hardware: proyektor, kabel, remote, layar.</p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">💻</div>
-                        <h4>Tim IT Support</h4>
+                        <h4>Facility IT</h4>
                         <p style="color: var(--text-muted); margin: 0.5rem 0;">Masalah software: driver, aplikasi meeting, jaringan/WiFi.</p>
                     </div>
                     <div class="contact-card">
@@ -868,8 +931,8 @@
     </main>
 
     <footer class="footer">
-        <p><strong>© 2024 Trakindo</strong> - Panduan Pengguna Proyektor & Kamera Rapat</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Terakhir diperbarui: Oktober 2025 | Versi 2.0</p>
+        <p><strong>© 2025 Trakindo</strong> - Projector & Conference Camera User Guide</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Last updated: Oktober 2025 | Versi 2.0</p>
     </footer>
 
     <script>
@@ -940,4 +1003,3 @@
     </script>
 </body>
 </html>
-
