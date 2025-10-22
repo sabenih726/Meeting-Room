@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projector & Conference Camera User Guide</title>
+    <title>Panduan Pengguna - Proyektor & Kamera Rapat</title>
     <style>
         /* CSS Reset */
         * {
@@ -12,18 +12,18 @@
             box-sizing: border-box;
         }
 
-        /* Variabel Warna */
+        /* Variabel Warna (Tema Trakindo) */
         :root {
-            --primary: #1976D2;
-            --primary-dark: #0D47A1;
-            --secondary: #FFA726;
-            --success: #66BB6A;
-            --warning: #FFA726;
-            --error: #EF5350;
+            --primary: #F4A300; /* Trakindo Yellow */
+            --primary-dark: #000000; /* Trakindo Black */
+            --secondary: #F4A300;
+            --success: #4CAF50;
+            --warning: #FB8C00;
+            --error: #E53935;
             --bg-light: #F5F7FA;
             --bg-white: #FFFFFF;
-            --text-dark: #1a237e;
-            --text-light: #424242;
+            --text-dark: #000000; /* Black for titles */
+            --text-light: #212121; /* Dark gray for body */
             --text-muted: #757575;
             --border: #E0E0E0;
             --shadow: rgba(0, 0, 0, 0.1);
@@ -31,16 +31,16 @@
             --glass-border: rgba(255, 255, 255, 0.3);
         }
 
-        /* Mode Gelap */
+        /* Mode Gelap (Tema Trakindo) */
         [data-theme="dark"] {
-            --bg-light: #1a1a2e;
-            --bg-white: #16213e;
-            --text-dark: #64B5F6;
+            --bg-light: #121212;
+            --bg-white: #1E1E1E;
+            --text-dark: #F4A300; /* Trakindo Yellow for titles */
             --text-light: #E0E0E0;
             --text-muted: #9E9E9E;
             --border: #424242;
             --shadow: rgba(0, 0, 0, 0.3);
-            --glass-bg: rgba(30, 30, 50, 0.85);
+            --glass-bg: rgba(30, 30, 30, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -93,6 +93,7 @@
             font-size: 1.8rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             flex-shrink: 0;
+            padding: 5px;
         }
 
         .title-section h1 {
@@ -206,14 +207,14 @@
         }
 
         .nav-tab:hover {
-            background: rgba(25, 118, 210, 0.1);
+            background: rgba(244, 163, 0, 0.1);
             color: var(--primary);
         }
 
         .nav-tab.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+            box-shadow: 0 4px 12px rgba(244, 163, 0, 0.3);
         }
 
         /* Konten Utama */
@@ -356,7 +357,7 @@
         }
 
         .accordion-header:hover {
-            background: rgba(25, 118, 210, 0.05);
+            background: rgba(244, 163, 0, 0.1);
             border-color: var(--primary);
         }
 
@@ -447,8 +448,8 @@
 
         .alert-info { background: #E3F2FD; border-left: 4px solid #2196F3; color: #0D47A1; }
         .alert-success { background: #E8F5E9; border-left: 4px solid #4CAF50; color: #2E7D32; }
-        .alert-warning { background: #FFF3E0; border-left: 4px solid #FF9800; color: #E65100; }
-        .alert-error { background: #FFEBEE; border-left: 4px solid #F44336; color: #C62828; }
+        .alert-warning { background: #FFF3E0; border-left: 4px solid #FB8C00; color: #E65100; }
+        .alert-error { background: #FFEBEE; border-left: 4px solid #E53935; color: #C62828; }
 
         /* Contact Cards */
         .contact-grid {
@@ -552,11 +553,11 @@
         <div class="header-main-content">
             <div class="logo-section">
                 <div class="logo">
-                    <img src="assets/logo_trakindo.png" alt="Logo Trakindo" style="width: 40px; height: auto;">
+                    <img src="assets/logo_trakindo.png" alt="Logo Trakindo" style="width: 100%; height: auto;">
                 </div>
                 <div class="title-section">
-                    <h1>Projector & Conference Camera User Guide</h1>
-                    <p>Complete guide to Kandao Meeting Pro projectors and cameras</p>
+                    <h1>Panduan Pengguna Proyektor & Kamera Rapat</h1>
+                    <p>Panduan lengkap untuk proyektor dan kamera Kandao Meeting Pro</p>
                 </div>
             </div>
             <div class="header-controls">
@@ -579,44 +580,28 @@
     </header>
 
     <main class="container">
-        <!-- Home Page -->
+        <!-- Halaman Beranda -->
         <div id="home" class="page active">
            <div class="alert alert-info">
                 <span class="alert-icon">📌</span>
                 <div>
-                    <strong>Welcome!</strong><br>
-                    Select a guide from the menu above to get started. Use the icons 🌙/☀️ to change the theme.
+                    <strong>Selamat Datang!</strong><br>
+                    Pilih panduan dari menu di atas untuk memulai. Gunakan ikon 🌙/☀️ untuk mengubah tema.
                 </div>
             </div>
             <h2 style="color: var(--text-dark); margin: 2rem 0;">🚀 Akses Cepat</h2>
             <div class="grid">
                 <div class="feature-card" onclick="showPage('projector', this)">
-                    <h3>Projector Guide</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Learn how to connect a laptop to a projector.</p>
-                    <ul>
-                        <li>Shortcut Windows + K</li>
-                        <li>Cable HDMI/VGA</li>
-                        <li>Troubleshooting connections</li>
-                    </ul>
+                    <h3>📺 Panduan Proyektor</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Pelajari cara menyambungkan laptop ke proyektor.</p>
                 </div>
-                
                 <div class="feature-card" onclick="showPage('camera', this)">
-                    <h3>Camera Guide</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Set up the Kandao Meeting Pro camera.</p>
-                    <ul>
-                        <li>Connection to a laptop</li>
-                        <li>Connection to the projector</li>
-                        <li>System topology</li>
-                    </ul>
+                    <h3>📷 Panduan Kamera</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Setup kamera Kandao Meeting Pro.</p>
                 </div>
                 <div class="feature-card" onclick="showPage('remote', this)">
-                    <h3>🎛️ Remote & Features</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Use of the remote and its features.</p>
-                    <ul>
-                        <li>Remote button functions</li>
-                        <li>360° Audio & 4K Video</li>
-                        <li>Smart tracking</li>
-                    </ul>
+                    <h3>🎛️ Remote & Fitur</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Penggunaan remote dan fitur-fiturnya.</p>
                 </div>
                 <div class="feature-card" onclick="showPage('faq', this)">
                     <h3>❓ FAQ & Troubleshooting</h3>
@@ -626,33 +611,33 @@
             <div class="alert alert-success" style="margin-top: 2rem;">
                 <span class="alert-icon">💡</span>
                 <div>
-                    <strong>Tips:</strong> Use the search feature in the header or shortcut <strong>Ctrl + K</strong> to find a quick solution!
+                    <strong>Tips:</strong> Gunakan fitur pencarian di header atau shortcut <strong>Ctrl + K</strong> untuk menemukan solusi cepat!
                 </div>
             </div>
         </div>
 
-        <!-- Projector Page -->
+        <!-- Halaman Proyektor -->
         <div id="projector" class="page">
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📺</div>
-                    <h2 class="card-title">Guide to Connecting a Projector</h2>
+                    <h2 class="card-title">Panduan Menyambungkan Proyektor</h2>
                 </div>
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>A. Using Keyboard Shortcuts (Wireless)</span><span class="accordion-icon">▼</span>
+                        <span>A. Menggunakan Shortcut Keyboard (Nirkabel)</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            <p>This method is the fastest way to connect wirelessly.</p>
+                            <p>Metode ini adalah cara tercepat untuk terhubung tanpa kabel.</p>
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Press the Windows key + K</h4>
-                                    <p>On your keyboard, press the <strong>Windows + K</strong> to open the ‘Connect’ panel.</p>
+                                    <h4>Tekan Tombol Windows + K</h4>
+                                    <p>Pada keyboard Anda, tekan tombol <strong>Windows + K</strong> untuk membuka panel 'Connect'.</p>
                                 </div>
                                 <div class="step">
-                                    <h4>Select Projector</h4>
-                                    <p>Select the name of the meeting room projector from the list that appears.</p>
+                                    <h4>Pilih Proyektor</h4>
+                                    <p>Pilih nama proyektor ruang meeting dari daftar yang muncul.</p>
                                     <div class="image-container">
                                         <img src="assets/windows_k_shortcut.png" alt="Panel Connect Windows" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=windows_k_shortcut.png'">
                                     </div>
@@ -663,32 +648,32 @@
                 </div>
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>B. Using an HDMI/VGA Cable</span><span class="accordion-icon">▼</span>
+                        <span>B. Menggunakan Kabel HDMI/VGA</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Connect the Cable</h4>
+                                    <h4>Sambungkan Kabel</h4>
                                     <div class="content-grid">
                                         <div>
-                                            <p>Connect the HDMI/VGA cable from the laptop to the corresponding port on the projector.</p>
+                                            <p>Sambungkan kabel HDMI/VGA dari laptop ke port yang sesuai di proyektor.</p>
                                         </div>
                                         <img src="assets/colokan_hdmi.png" alt="Port HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=colokan_hdmi.png'">
                                     </div>
                                 </div>
                                 <div class="step">
-                                    <h4>Select Input Source</h4>
+                                    <h4>Pilih Sumber Input</h4>
                                     <div class="content-grid">
                                        <div>
-                                            <p>Use the projector remote to select the input source (HDMI/VGA). If the screen does not appear, press <strong>Windows + P</strong> and select ‘Duplicate’.</p>
+                                            <p>Gunakan remote proyektor untuk memilih sumber input (HDMI/VGA). Jika layar tidak tampil, tekan <strong>Windows + P</strong> dan pilih 'Duplicate'.</p>
                                        </div>
                                        <img src="assets/home_screen_hdmi.png" alt="Pilih Input HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=home_screen_hdmi.png'">
                                     </div>
                                 </div>
                                 <div class="step">
-                                    <h4>Connection Verification</h4>
-                                    <p>Your laptop display will appear on the projector screen.</p>
+                                    <h4>Verifikasi Koneksi</h4>
+                                    <p>Tampilan laptop Anda akan muncul di layar proyektor.</p>
                                     <div class="image-container">
                                         <img src="assets/Picture11.png" alt="Tampilan proyektor berhasil" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=Picture11.png'">
                                     </div>
@@ -700,7 +685,7 @@
                  <div class="alert alert-warning" style="margin-top:2rem; display:flex; align-items:center; gap: 1rem;">
                     <img src="assets/Picture12.png" alt="Tombol power off remote" style="max-width:150px; border-radius:8px;" onerror="this.onerror=null;this.src='https://placehold.co/150x100/?text=Picture12.png'">
                     <div>
-                        <strong>Important:</strong> Don't forget to turn off the projector after use to save energy!
+                        <strong>Penting:</strong> Jangan lupa matikan proyektor setelah selesai digunakan untuk menghemat energi!
                     </div>
                 </div>
             </div>
@@ -883,8 +868,8 @@
     </main>
 
     <footer class="footer">
-        <p><strong>© 2025 Trakindo</strong> - Projector & Conference Camera User Guide</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Last updated: Oktober 2025 | Versi 2.0</p>
+        <p><strong>© 2024 Trakindo</strong> - Panduan Pengguna Proyektor & Kamera Rapat</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Terakhir diperbarui: Oktober 2025 | Versi 2.0</p>
     </footer>
 
     <script>
