@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Pengguna - Proyektor & Kamera Rapat</title>
+    <title>Projector & Conference Camera User Guide</title>
     <style>
         /* CSS Reset */
         * {
@@ -378,13 +378,13 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.5s ease-out;
             background: var(--bg-white);
             border-radius: 0 0 12px 12px;
         }
         
         .accordion-header.active + .accordion-content {
-             max-height: 2000px;
+             max-height: 2000px; /* Cukup besar */
              border: 2px solid var(--primary);
              border-top: none;
         }
@@ -495,7 +495,7 @@
             margin-top: 4rem;
         }
         
-        /* GAYA GAMBAR BARU */
+        /* GAYA GAMBAR & KONTEN */
         .image-container {
             margin: 1.5rem 0;
             text-align: center;
@@ -514,78 +514,49 @@
             margin-top: 0.75rem;
             font-style: italic;
         }
-
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
 
         /* Responsif */
         @media (max-width: 768px) {
-            .header-main-content {
+            .header-main-content, .logo-section {
                 flex-direction: column;
                 text-align: center;
-            }
-
-            .logo-section {
-                flex-direction: column;
                 gap: 1rem;
             }
-
-            .title-section h1 {
-                font-size: 1.4rem;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-            
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
+            .title-section h1 { font-size: 1.4rem; }
+            .search-box { width: 100%; }
+            .nav-container { padding: 0 1rem; }
+            .container, .card { padding: 1rem; }
+            .grid, .content-grid { grid-template-columns: 1fr; }
         }
 
         /* Print Styles */
         @media print {
-            .header, .nav-tabs, .footer, .theme-toggle {
-                display: none;
-            }
-
-            .page {
-                display: block !important;
-                page-break-after: always;
-            }
-
-            .card {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
+            .header, .nav-tabs, .footer, .theme-toggle { display: none; }
+            .page { display: block !important; page-break-after: always; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
         }
 
         /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
     </style>
 </head>
 <body>
-    <!-- Header dan Navigasi yang Disatukan -->
     <header class="header">
         <div class="header-main-content">
             <div class="logo-section">
-                <div class="logo">🎥</div>
+                <div class="logo">
+                    <img src="assets/logo_trakindo.png" alt="Logo Trakindo" style="width: 40px; height: auto;">
+                </div>
                 <div class="title-section">
-                    <h1>Panduan Pengguna Proyektor & Kamera Rapat</h1>
-                    <p>Panduan lengkap untuk proyektor dan kamera Kandao Meeting Pro</p>
+                    <h1>Projector & Conference Camera User Guide</h1>
+                    <p>Complete guide to Kandao Meeting Pro projectors and cameras</p>
                 </div>
             </div>
             <div class="header-controls">
@@ -607,415 +578,143 @@
         </div>
     </header>
 
-    <!-- Konten Utama -->
     <main class="container">
-        <!-- Halaman Beranda -->
+        <!-- Home Page -->
         <div id="home" class="page active">
-           <!-- Konten Beranda tetap sama -->
-            <div class="alert alert-info">
+           <div class="alert alert-info">
                 <span class="alert-icon">📌</span>
                 <div>
-                    <strong>Selamat Datang!</strong><br>
-                    Pilih panduan dari menu di atas untuk memulai. Gunakan ikon 🌙/☀️ untuk mengubah tema.
+                    <strong>Welcome!</strong><br>
+                    Select a guide from the menu above to get started. Use the icons 🌙/☀️ to change the theme.
                 </div>
             </div>
-
             <h2 style="color: var(--text-dark); margin: 2rem 0;">🚀 Akses Cepat</h2>
-            
             <div class="grid">
                 <div class="feature-card" onclick="showPage('projector', this)">
-                    <h3>📺 Panduan Proyektor</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Pelajari cara menyambungkan laptop ke proyektor:</p>
-                    <ul>
-                        <li>Shortcut Windows + K</li>
-                        <li>Kabel HDMI/VGA</li>
-                        <li>Troubleshooting koneksi</li>
-                    </ul>
+                    <h3>Projector Guide</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Learn how to connect a laptop to a projector.</p>
                 </div>
-
                 <div class="feature-card" onclick="showPage('camera', this)">
-                    <h3>📷 Panduan Kamera</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Setup kamera Kandao Meeting Pro:</p>
-                    <ul>
-                        <li>Koneksi ke laptop</li>
-                        <li>Koneksi ke proyektor</li>
-                        <li>Topologi sistem</li>
-                    </ul>
+                    <h3>Camera Guide</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Set up the Kandao Meeting Pro camera.</p>
                 </div>
-
                 <div class="feature-card" onclick="showPage('remote', this)">
-                    <h3>🎛️ Remote & Fitur</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Penggunaan remote dan fitur:</p>
-                    <ul>
-                        <li>Fungsi tombol remote</li>
-                        <li>Audio 360° & 4K Video</li>
-                        <li>Smart tracking</li>
-                    </ul>
+                    <h3>🎛️ Remote & Features</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Use of the remote and its features.</p>
                 </div>
-
                 <div class="feature-card" onclick="showPage('faq', this)">
                     <h3>❓ FAQ & Troubleshooting</h3>
-                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Solusi masalah umum:</p>
-                    <ul>
-                        <li>Proyektor tidak terdeteksi</li>
-                        <li>Kamera tidak muncul</li>
-                        <li>Kontak bantuan</li>
-                    </ul>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Solusi untuk masalah umum.</p>
                 </div>
             </div>
-
             <div class="alert alert-success" style="margin-top: 2rem;">
                 <span class="alert-icon">💡</span>
                 <div>
-                    <strong>Tips:</strong> Gunakan fitur pencarian di header untuk menemukan solusi cepat! Anda juga bisa menggunakan shortcut <strong>Ctrl + K</strong> untuk langsung ke kolom pencarian.
+                    <strong>Tips:</strong> Use the search feature in the header or shortcut <strong>Ctrl + K</strong> to find a quick solution!
                 </div>
             </div>
         </div>
 
-        <!-- Halaman Proyektor (Dengan Contoh Gambar) -->
+        <!-- Halaman Proyektor -->
         <div id="projector" class="page">
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📺</div>
                     <h2 class="card-title">Panduan Menyambungkan Proyektor</h2>
                 </div>
-                
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>A. Menggunakan Shortcut Keyboard (Nirkabel)</span>
-                        <span class="accordion-icon">▼</span>
+                        <span>A. Menggunakan Shortcut Keyboard (Nirkabel)</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
+                            <p>Metode ini adalah cara tercepat untuk terhubung tanpa kabel.</p>
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Pastikan Proyektor Menyala</h4>
-                                    <p>Tekan tombol power di remote proyektor dan tunggu hingga lampu indikator menyala stabil.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Tekan Kombinasi Tombol</h4>
-                                    <p>Pada keyboard laptop Anda, tekan tombol <strong>Windows + K</strong> secara bersamaan. Ini akan membuka panel "Connect".</p>
+                                    <h4>Tekan Tombol Windows + K</h4>
+                                    <p>Pada keyboard Anda, tekan tombol <strong>Windows + K</strong> untuk membuka panel 'Connect'.</p>
                                 </div>
                                 <div class="step">
                                     <h4>Pilih Proyektor</h4>
-                                    <p>Pilih nama proyektor ruang meeting dari daftar perangkat yang muncul di panel sebelah kanan layar.</p>
-                                    
-                                    <!-- GAMBAR TELAH DIUBAH KE PATH RELATIF -->
+                                    <p>Pilih nama proyektor ruang meeting dari daftar yang muncul.</p>
                                     <div class="image-container">
-                                        <img src="assets/windows_k_shortcut.png" 
-                                             alt="Panel Connect Windows untuk memilih proyektor nirkabel" 
-                                             class="guide-image"
-                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/e3f2fd/1a237e?text=Gambar+Tidak+Ditemukan';">
-                                        <p class="image-caption">Contoh tampilan panel "Connect" di Windows.</p>
+                                        <img src="assets/windows_k_shortcut.png" alt="Panel Connect Windows" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=windows_k_shortcut.png'">
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>B. Menggunakan Kabel HDMI/VGA</span>
-                        <span class="accordion-icon">▼</span>
+                        <span>B. Menggunakan Kabel HDMI/VGA</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
                             <div class="steps">
                                 <div class="step">
                                     <h4>Sambungkan Kabel</h4>
-                                    <ul>
-                                        <li>Ambil kabel HDMI atau VGA yang tersedia di ruang meeting.</li>
-                                        <li>Sambungkan satu ujung ke port yang sesuai di proyektor.</li>
-                                        <li>Sambungkan ujung lainnya ke port di laptop Anda.</li>
-                                        <li>Pastikan kedua ujung kabel terpasang dengan kencang.</li>
-                                    </ul>
+                                    <div class="content-grid">
+                                        <div>
+                                            <p>Sambungkan kabel HDMI/VGA dari laptop ke port yang sesuai di proyektor.</p>
+                                        </div>
+                                        <img src="assets/colokan_hdmi.png" alt="Port HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=colokan_hdmi.png'">
+                                    </div>
                                 </div>
                                 <div class="step">
                                     <h4>Pilih Sumber Input</h4>
-                                    <ul>
-                                        <li>Gunakan remote proyektor, cari tombol "Input" atau "Source".</li>
-                                        <li>Pilih input yang sesuai (HDMI atau VGA).</li>
-                                        <li>Jika tidak ada tampilan, tekan <strong>Windows + P</strong> di laptop dan pilih "Duplicate".</li>
-                                    </ul>
+                                    <div class="content-grid">
+                                       <div>
+                                            <p>Gunakan remote proyektor untuk memilih sumber input (HDMI/VGA). Jika layar tidak tampil, tekan <strong>Windows + P</strong> dan pilih 'Duplicate'.</p>
+                                       </div>
+                                       <img src="assets/home_screen_hdmi.png" alt="Pilih Input HDMI" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=home_screen_hdmi.png'">
+                                    </div>
                                 </div>
                                 <div class="step">
                                     <h4>Verifikasi Koneksi</h4>
-                                    <p>Tampilan layar laptop Anda seharusnya sekarang muncul di layar proyektor.</p>
+                                    <p>Tampilan laptop Anda akan muncul di layar proyektor.</p>
+                                    <div class="image-container">
+                                        <img src="assets/Picture11.png" alt="Tampilan proyektor berhasil" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=Picture11.png'">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="alert alert-warning" style="margin-top:2rem">
-                    <span class="alert-icon">🔌</span>
+                 <div class="alert alert-warning" style="margin-top:2rem; display:flex; align-items:center; gap: 1rem;">
+                    <img src="assets/Picture12.png" alt="Tombol power off remote" style="max-width:150px; border-radius:8px;" onerror="this.onerror=null;this.src='https://placehold.co/150x100/?text=Picture12.png'">
                     <div>
-                        <strong>Penting:</strong> Jangan lupa matikan proyektor setelah selesai digunakan untuk menghemat energi dan memperpanjang umur lampu proyektor!
+                        <strong>Penting:</strong> Jangan lupa matikan proyektor setelah selesai digunakan untuk menghemat energi!
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Halaman lainnya (Kamera, Remote, FAQ) tetap sama -->
+        <!-- Halaman Kamera -->
         <div id="camera" class="page">
-            <!-- Isi halaman kamera -->
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📷</div>
                     <h2 class="card-title">Panduan Kamera Kandao Meeting Pro</h2>
                 </div>
-
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>A. Koneksi ke Laptop (Mode Webcam)</span>
-                        <span class="accordion-icon">▼</span>
+                        <span>A. Koneksi ke Laptop (Mode Webcam)</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
                             <div class="steps">
                                 <div class="step">
-                                    <h4>Nyalakan Kamera Kandao</h4>
-                                    <p>Tekan dan tahan tombol <strong>ON/OFF</strong> pada kamera hingga lampu indikator menyala.</p>
+                                    <h4>Nyalakan & Hubungkan Kamera</h4>
+                                    <p>Tekan tombol power, lalu hubungkan kabel USB dari port 'USB OUT' kamera ke laptop Anda.</p>
+                                    <div class="content-grid">
+                                        <img src="assets/kandao_power_button.png" alt="Tombol Power Kandao" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=kandao_power_button.png'">
+                                        <img src="assets/Picture15.png" alt="Koneksi USB ke laptop" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/?text=Picture15.png'">
+                                    </div>
                                 </div>
                                 <div class="step">
-                                    <h4>Hubungkan ke Laptop</h4>
-                                    <p>Gunakan kabel <strong>USB-C ke USB-A</strong> yang disediakan. Sambungkan ujung USB-C ke port "USB OUT" di kamera dan ujung USB-A ke port USB di laptop.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Buka Aplikasi Meeting</h4>
-                                    <p>Jalankan aplikasi seperti Zoom, Microsoft Teams, atau Google Meet.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Pilih Perangkat di Pengaturan</h4>
-                                    <p>Di pengaturan aplikasi meeting, pilih <strong>"Kandao Meeting Pro"</strong> sebagai sumber Kamera, Mikrofon, dan Speaker.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>B. Koneksi ke Proyektor (Mode Mandiri)</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <div class="steps">
-                                <div class="step">
-                                    <h4>Hubungkan HDMI</h4>
-                                    <p>Sambungkan kamera ke proyektor atau monitor menggunakan kabel HDMI dari port "HDMI OUT" kamera.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Nyalakan Perangkat</h4>
-                                    <p>Nyalakan kamera Kandao dan pastikan proyektor juga sudah menyala dengan input HDMI yang benar.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Sambungkan ke Wi-Fi</h4>
-                                    <ul>
-                                        <li>Gunakan remote untuk menavigasi ke menu pengaturan pada layar.</li>
-                                        <li>Pilih Wi-Fi dan sambungkan ke jaringan yang tersedia (misal: <strong>TU MOBILE</strong>).</li>
-                                    </ul>
-                                </div>
-                                <div class="step">
-                                    <h4>Mulai Meeting</h4>
-                                    <p>Anda dapat bergabung atau memulai meeting langsung dari antarmuka kamera Kandao di proyektor.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="accordion">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>C. Topologi Sistem Kandao</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <h4 style="color: var(--text-dark); margin-bottom: 1rem;">Alur Koneksi Umum:</h4>
-                            <div class="steps">
-                                <div class="step">
-                                    <h4>Sumber Listrik</h4>
-                                    <p>Hubungkan adaptor daya USB-C ke kamera untuk memastikan daya stabil.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Output Tampilan</h4>
-                                    <p>Sambungkan port HDMI OUT dari kamera ke port HDMI IN di Proyektor/TV.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Koneksi Data</h4>
-                                    <p>Sambungkan port USB OUT dari kamera ke port USB di Laptop (untuk mode webcam).</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Koneksi Internet</h4>
-                                    <p>Hubungkan ke WiFi atau gunakan port LAN untuk koneksi internet kabel yang lebih stabil.</p>
-                                </div>
-                            </div>
-                           <div class="image-container">
-                                <img src="assets/topology_diagram.png" 
-                                     alt="Diagram alur koneksi sistem Kandao" 
-                                     class="guide-image"
-                                     onerror="this.onerror=null;this.src='https://placehold.co/800x250/e3f2fd/1a237e?text=Gambar+Tidak+Ditemukan';">
-                                <p class="image-caption">Contoh diagram koneksi perangkat.</p>
-                            </div>
-                            <div class="alert alert-info" style="margin-top: 1.5rem;">
-                                <span class="alert-icon">💡</span>
-                                <div>
-                                    <strong>Catatan:</strong> Untuk pengalaman terbaik dalam mode mandiri, disarankan menggunakan koneksi internet kabel (LAN) jika tersedia.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="remote" class="page">
-             <!-- Isi halaman remote -->
-             <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🎛️</div>
-                    <h2 class="card-title">Remote Control & Fitur Unggulan</h2>
-                </div>
-                <p>Kuasai fungsi remote dan manfaatkan fitur-fitur canggih dari kamera Kandao Meeting Pro.</p>
-
-                <div class="accordion" style="margin-top:1.5rem">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>Fungsi Tombol Remote Control</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                             <div class="grid">
-                                <div class="feature-card">
-                                    <h3>⚡ Tombol Daya (Power)</h3>
-                                    <ul>
-                                        <li>Nyalakan/matikan kamera</li>
-                                        <li>Tekan dan tahan 2-3 detik</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card">
-                                    <h3>🖱️ Mode Mouse</h3>
-                                    <ul>
-                                        <li>Aktifkan navigasi kursor</li>
-                                        <li>Gunakan directional pad</li>
-                                        <li>Tekan OK untuk klik</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card">
-                                    <h3>🔊 Volume +/-</h3>
-                                    <ul>
-                                        <li>Atur volume speaker</li>
-                                        <li>Volume+ untuk menaikkan</li>
-                                        <li>Volume- untuk menurunkan</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card">
-                                    <h3>🎙️ Tombol Mikrofon</h3>
-                                    <ul>
-                                        <li>Mute/unmute audio</li>
-                                        <li>LED berubah saat mute</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card">
-                                    <h3>🎯 Directional Pad</h3>
-                                    <ul>
-                                        <li>Navigasi menu interface</li>
-                                        <li>Kontrol pointer mouse</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card">
-                                    <h3>✅ Tombol OK/Enter</h3>
-                                    <ul>
-                                        <li>Konfirmasi pilihan</li>
-                                        <li>Klik saat mode mouse</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="alert alert-warning">
-                                <span class="alert-icon">⚠️</span>
-                                <div>
-                                    <strong>Perhatian:</strong> Arahkan remote ke sensor IR pada kamera (jarak maksimal ~5 meter) dan pastikan tidak ada penghalang.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>Fitur Unggulan Kamera Kandao</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <div class="grid">
-                                <div class="feature-card" style="border-left-color: var(--primary);">
-                                    <h3>🎙️ Audio Jernih 360°</h3>
-                                    <ul>
-                                        <li>8 Mikrofon Array</li>
-                                        <li>Noise & Echo Cancellation</li>
-                                        <li>Jangkauan 5.5 meter</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card" style="border-left-color: var(--success);">
-                                    <h3>🎥 Video Cerdas 4K</h3>
-                                    <ul>
-                                        <li>Tampilan Panorama 360°</li>
-                                        <li>Resolusi 4K Ultra HD</li>
-                                        <li>AI Smart Tracking & Framing</li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card" style="border-left-color: var(--secondary);">
-                                    <h3>⚡ Mudah & Fleksibel</h3>
-                                    <ul>
-                                        <li>Plug & Play via USB</li>
-                                        <li>Mode Mandiri (Android OS)</li>
-                                        <li>Kompatibel Multi-platform</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="alert alert-success" style="margin-top: 2rem;">
-                                <span class="alert-icon">🌟</span>
-                                <div>
-                                    <strong>Pro Tip:</strong> Aktifkan mode "Speaker-tracking" untuk presentasi yang lebih dinamis, di mana kamera akan otomatis fokus pada orang yang sedang berbicara.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div id="faq" class="page">
-            <!-- Isi halaman FAQ -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">❓</div>
-                    <h2 class="card-title">FAQ & Troubleshooting</h2>
-                </div>
-                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">🔧 Solusi Masalah Umum</h3>
-                <div class="accordion">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>❌ Proyektor tidak menampilkan gambar dari laptop?</span>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <div class="steps">
-                                <div class="step">
-                                    <h4>Cek Koneksi Fisik</h4>
-                                    <p>Pastikan kabel (HDMI/VGA) terpasang kencang di laptop dan proyektor.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Cek Sumber Input</h4>
-                                    <p>Gunakan remote proyektor untuk memastikan "Source" atau "Input" sudah benar (HDMI/VGA).</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Cek Pengaturan Tampilan</h4>
-                                    <p>Tekan <strong>Windows + P</strong> pada keyboard dan pilih mode "Duplicate". Untuk Mac, periksa "System Settings" > "Displays".</p>
+                                    <h4>Pilih Kamera di Aplikasi</h4>
+                                    <p>Buka aplikasi meeting (Zoom/Teams), masuk ke pengaturan Video, dan pilih <strong>Kandao Meeting Pro</strong>.</p>
                                 </div>
                             </div>
                         </div>
@@ -1023,23 +722,68 @@
                 </div>
                 <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>❌ Kamera tidak terdeteksi di Zoom/Teams?</span>
-                        <span class="accordion-icon">▼</span>
+                        <span>B. Koneksi ke Proyektor (Mode Mandiri)</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
                              <div class="steps">
-                                <div class="step">
-                                    <h4>Koneksi USB Bermasalah</h4>
-                                    <p>Pastikan kabel USB terpasang dengan baik. Coba gunakan port USB lain di laptop (utamakan port USB 3.0 berwarna biru).</p>
+                                 <div class="step">
+                                     <h4>Hubungkan HDMI & Nyalakan</h4>
+                                     <p>Sambungkan kabel HDMI dari kamera ke proyektor, lalu nyalakan kedua perangkat.</p>
+                                     <div class="image-container">
+                                         <img src="assets/Picture13.png" alt="Koneksi HDMI Kamera ke Proyektor" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/?text=Picture13.png'">
+                                     </div>
+                                 </div>
+                                 <div class="step">
+                                     <h4>Hubungkan ke WiFi</h4>
+                                     <p>Gunakan remote untuk masuk ke pengaturan dan hubungkan kamera ke jaringan WiFi.</p>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>C. Diagram Topologi Sistem</span><span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                           <p>Diagram ini menunjukkan alur koneksi lengkap perangkat Kandao Meeting Pro.</p>
+                           <div class="image-container">
+                                <img src="assets/Picture14.png" alt="Diagram Topologi Sistem Kandao" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/800x450/?text=Picture14.png'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman Remote -->
+        <div id="remote" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎛️</div>
+                    <h2 class="card-title">Remote Control & Fitur Unggulan</h2>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Fungsi Tombol Remote</span><span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="content-grid">
+                                <div>
+                                    <p><strong>Tombol Utama:</strong></p>
+                                    <ul>
+                                        <li><strong>Power:</strong> Menyalakan/mematikan kamera.</li>
+                                        <li><strong>Mode Mouse:</strong> Mengaktifkan kursor di layar.</li>
+                                        <li><strong>Volume +/-:</strong> Mengatur volume speaker.</li>
+                                        <li><strong>Mute:</strong> Mematikan/menyalakan mikrofon.</li>
+                                        <li><strong>D-Pad & OK:</strong> Untuk navigasi dan konfirmasi.</li>
+                                    </ul>
                                 </div>
-                                <div class="step">
-                                    <h4>Perangkat Belum Dipilih</h4>
-                                    <p>Di pengaturan Audio & Video aplikasi meeting, pastikan "Kandao Meeting Pro" terpilih sebagai kamera, mikrofon, dan speaker.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Izin Akses Kamera</h4>
-                                    <p>Di Pengaturan Windows/Mac, pastikan aplikasi (Zoom/Teams) diizinkan untuk mengakses kamera.</p>
+                                <div class="image-container">
+                                    <img src="assets/kandao_remote_buttons.png" alt="Tombol remote Kandao" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/300x400/?text=kandao_remote_buttons.png'">
                                 </div>
                             </div>
                         </div>
@@ -1047,54 +791,60 @@
                 </div>
                  <div class="accordion">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>❌ Tidak bisa connect ke WiFi?</span>
-                        <span class="accordion-icon">▼</span>
+                        <span>Fitur Unggulan Kamera</span><span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            <div class="steps">
-                                <div class="step">
-                                    <h4>Password Salah</h4>
-                                    <p>Verifikasi password WiFi dengan tim IT, perhatikan huruf besar/kecil dan karakter spesial.</p>
-                                </div>
-                                <div class="step">
-                                    <h4>Sinyal Lemah</h4>
-                                    <p>Pastikan kamera tidak terlalu jauh dari sumber WiFi (access point).</p>
-                                </div>
-                                <div class="step">
-                                    <h4>MAC Address Filtering</h4>
-                                    <p>Hubungi tim IT untuk mendaftarkan MAC Address kamera ke dalam jaringan WiFi jika diperlukan.</p>
-                                </div>
+                            <p>Kamera Kandao dilengkapi berbagai fitur cerdas untuk meningkatkan pengalaman rapat Anda.</p>
+                             <div class="image-container">
+                                <img src="assets/kandao_features_summary.png.png" alt="Fitur unggulan Kandao" class="guide-image" onerror="this.onerror=null;this.src='https://placehold.co/800x450/?text=kandao_features_summary.png.png'">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Halaman FAQ -->
+        <div id="faq" class="page">
             <div class="card">
-                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">💡 Tips & Praktik Terbaik</h3>
-                <div class="grid">
-                    <div class="feature-card" style="border-left-color: #4CAF50;">
-                        <h3>✅ Sebelum Meeting</h3>
-                        <ul>
-                            <li>Datang 10-15 menit lebih awal.</li>
-                            <li>Nyalakan dan uji semua perangkat.</li>
-                            <li>Pastikan koneksi internet stabil.</li>
-                            <li>Siapkan materi presentasi Anda.</li>
-                        </ul>
+                 <div class="card-header">
+                    <div class="card-icon">❓</div>
+                    <h2 class="card-title">FAQ & Troubleshooting</h2>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Proyektor tidak menampilkan gambar?</span><span class="accordion-icon">▼</span>
                     </div>
-                    <div class="feature-card" style="border-left-color: #FF9800;">
-                        <h3>✅ Setelah Meeting</h3>
-                        <ul>
-                            <li>Matikan proyektor & kamera.</li>
-                            <li>Cabut kabel dengan hati-hati.</li>
-                            <li>Rapikan kembali remote dan kabel.</li>
-                            <li>Laporkan jika ada kendala/kerusakan.</li>
-                        </ul>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                           <p>Pastikan kabel terpasang kencang, sumber input di proyektor sudah benar, dan coba tekan <strong>Windows + P</strong> lalu pilih 'Duplicate'.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Kamera tidak terdeteksi di Zoom/Teams?</span><span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                           <p>Coba ganti port USB, pastikan Anda memilih "Kandao Meeting Pro" di pengaturan audio & video aplikasi, dan pastikan tidak ada aplikasi lain yang sedang menggunakan kamera.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Remote tidak berfungsi?</span><span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                           <p>Penyebab paling umum adalah baterai habis. Coba ganti baterai terlebih dahulu. Pastikan juga tidak ada penghalang antara remote dan kamera.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="card">
-                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">📞 Butuh Bantuan Lanjutan?</h3>
+                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">📞 Kontak Bantuan</h3>
                 <div class="contact-grid">
                     <div class="contact-card">
                         <div class="contact-icon">🏢</div>
@@ -1112,113 +862,74 @@
                         <p style="color: var(--text-muted); margin: 0.5rem 0;">Untuk semua kendala darurat dan pelaporan tiket.</p>
                     </div>
                 </div>
-                 <div class="alert alert-success">
-                    <span class="alert-icon">✅</span>
-                    <div>
-                        <strong>Saat menghubungi bantuan, siapkan info ini:</strong> Nama ruang meeting, jenis masalah, dan screenshot error (jika ada). Ini akan mempercepat proses penyelesaian masalah.
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p><strong>© 2024 Trakindo</strong> - Panduan Pengguna Proyektor & Kamera Rapat</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Terakhir diperbarui: Januari 2024 | Versi 1.2</p>
+        <p><strong>© 2025 Trakindo</strong> - Projector & Conference Camera User Guide</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Last updated: Oktober 2025 | Versi 2.0</p>
     </footer>
 
     <script>
         let activeTab = 'home';
         const searchInput = document.getElementById('searchInput');
 
-        // Navigasi Halaman
-        function showPage(pageId, element) {
-            // Sembunyikan semua halaman
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Tampilkan halaman yang dipilih
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            // Perbarui tab navigasi
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-                if(tab.getAttribute('onclick').includes(`'${pageId}'`)) {
-                    tab.classList.add('active');
-                }
+            document.querySelectorAll('.nav-tab').forEach(t => {
+                t.classList.remove('active');
+                if(t.getAttribute('onclick').includes(`'${pageId}'`)) t.classList.add('active');
             });
-
-            // Gulir ke atas
             window.scrollTo({ top: 0, behavior: 'smooth' });
             activeTab = pageId;
         }
 
-        // Toggle Accordion
         function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const isActive = header.classList.contains('active');
-
-            // Tutup semua accordion di dalam card yang sama untuk menghindari banyak yang terbuka
             const parentCard = header.closest('.card');
             if (parentCard) {
                  parentCard.querySelectorAll('.accordion-header').forEach(h => {
                     if (h !== header) h.classList.remove('active');
                 });
             }
-            
-            // Buka atau tutup accordion yang diklik
             header.classList.toggle('active');
         }
 
-        // Toggle Tema
         function toggleTheme() {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const newTheme = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             document.querySelector('.theme-toggle').textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // Muat tema yang tersimpan
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.querySelector('.theme-toggle').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         });
 
-        // Fungsionalitas Pencarian
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             const faqPage = document.getElementById('faq');
             
             if (searchTerm === '') {
-                 faqPage.querySelectorAll('.accordion').forEach(acc => {
-                    acc.style.display = 'block';
-                 });
+                 faqPage.querySelectorAll('.accordion').forEach(acc => acc.style.display = 'block');
                  if (activeTab !== 'faq') showPage(activeTab);
                  return;
             }
 
             let found = false;
             faqPage.querySelectorAll('.accordion').forEach(accordion => {
-                const textContent = accordion.textContent.toLowerCase();
-                if (textContent.includes(searchTerm)) {
-                    accordion.style.display = 'block';
-                    found = true;
-                } else {
-                    accordion.style.display = 'none';
-                }
+                const isVisible = accordion.textContent.toLowerCase().includes(searchTerm);
+                accordion.style.display = isVisible ? 'block' : 'none';
+                if (isVisible) found = true;
             });
 
-            if (found && activeTab !== 'faq') {
-                showPage('faq');
-            }
+            if (found && activeTab !== 'faq') showPage('faq');
         });
 
-        // Shortcut keyboard untuk pencarian
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
                 e.preventDefault();
